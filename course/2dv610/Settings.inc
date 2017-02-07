@@ -23,7 +23,7 @@ define("END_OF_REVIEW_PHASE", mktime(0,0,0,$month, $day, $year));
 /**
 * User ids of teachers, note that these also must be in the students.inc, or?
 */
-define("TEACHERS", array("usera1") );
+define("TEACHERS", array("admin1", "admin2") );
 
 define("STUDENT_FILE", "/vagrant/course/2dv610/students.inc");
 define("UPLOAD_PATH", "/vagrant/data/2dv610");
