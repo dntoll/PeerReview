@@ -5,12 +5,15 @@ Simple Peer Review system for use in courses. Provided as is, but with an intent
   
   * git clone https://github.com/dntoll/PeerReview.git
   * ... create data folder and perhaps subfolders
-   * mkdir data
+  * mkdir data
+  * git pull origin master
   * vagrant up
   * vagrant ssh
     * sudo nano /etc/nginx/conf.d/default.conf
-    * change to: root   /vagrant;
+    * change "root   /var/www/default;" to: "root   /vagrant;"
+    * CTRL+x, Y (save)
     * sudo service nginx restart
+    * exit
   * ... edit course/2dv610/settings ...
 
 ##TODO
