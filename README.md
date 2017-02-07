@@ -4,8 +4,12 @@ Simple Peer Review system for use in courses. Provided as is, but with an intent
 ## Installation
   
   * git clone https://github.com/dntoll/PeerReview.git
-  * ... create data folder and perhaps subfolders
-  * mkdir data
+  * create directories:
+    * /data
+    * /data/2dv610
+    * /data/2dv610/Users
+    * /data/2dv610/Review
+    * /data/2dv610/ReviewFeedback
   * git pull origin master
   * vagrant up
   * vagrant ssh
@@ -24,12 +28,6 @@ http://localhost:8089/index.php?userID=12724401e9a2e2bd7142972906ae6643
 Studentaccount "user1" with its personal link
 http://localhost:8089/index.php?userID=b5cc34abc6e343f267b3cd934d2aa622
 
-To be able to upload a document:
-
- 1. cd data
- 2. mkdir 2dv610
- 3. cd 2dv610
- 4. mkdir Users
 
 ##TODO
 
