@@ -25,10 +25,11 @@ Studentaccount "user1" with its personal link
 http://localhost:8089/index.php?userID=b5cc34abc6e343f267b3cd934d2aa622
 
 To be able to upload a document:
-1. cd data
-2. mkdir 2dv610
-3. cd 2dv610
-4. mkdir Users
+
+ 1. cd data
+ 2. mkdir 2dv610
+ 3. cd 2dv610
+ 4. mkdir Users
 
 ##TODO
 
