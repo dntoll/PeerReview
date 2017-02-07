@@ -1,3 +1,13 @@
+# Description
+Simple Peer Review system for use in courses. Provided as is, but with an intention to adopt to a multi-course system.
+
+## Installation
+  
+  git clone https://github.com/dntoll/PeerReview.git
+  ... create data folder and perhaps subfolders
+  ... edit course/2dv610/settings ...
+  vagrant up
+
 ##TODO
 
 
