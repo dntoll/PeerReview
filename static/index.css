@@ -1,0 +1,118 @@
+
+
+.Review {
+    
+    padding: 15px;
+    margin: 5px;
+    border-radius: 10px; 
+    border: 1px solid gray;
+    border-collapse: collapse;
+}
+
+.ReviewText {
+    border: 1px solid gray;
+    background-color: rgb(240,240,240); 
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.ReviewForm {
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px; 
+}
+
+
+.Feedback {
+    background-color: rgb(240,240,240); 
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.FeedbackForm {
+	background-color: rgb(240,240,240);    
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.Information {
+    background-color: rgb(180,180,250);
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.Warning {
+	background-color: rgb(250,180,180);
+	padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
+    text-align: center;
+    
+}
+
+.testPlan {
+	background-color: rgb(240,240,240);	
+	padding: 15px;
+	margin: 15px;
+	
+    border-radius: 10px;
+}
+
+.Submenu {
+    background-color: rgb(240,240,240); 
+    padding: 0px;
+    margin: 0px;
+}
+
+.menuItemSelected {
+
+}
+
+.menu {
+	/*background-color: rgb(255,230,230);*/
+
+}
+
+.myimage {
+    width: 2em;
+    height: 2em;
+    vertical-align: middle;
+    margin: 15px;
+}
+
+
+table, th, td {
+   border-collapse: collapse;
+   border: 1px solid black;
+}
+
+th {
+    background-color: #b77194;
+    color: white;
+}
+
+.attention {
+    background-color: rgb(250,180,180);
+}
+
+.checked {
+    background-color: rgb(180,250,180);
+}
+
+.not_graded {
+    background-color: rgb(250,250,180);
+} 
+
+
+
+.strikethrough {
+    text-decoration: line-through;
+}
+
+
+tr:nth-child(even) {background-color: white}
+tr:nth-child(odd) {background-color: lightgray}
