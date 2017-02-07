@@ -46,7 +46,7 @@ class ReviewFeedbackView {
 		
 		$index = $this->getReviewIndex();
 
-		if ($this->allReviews->isset($index)) {
+		if ($this->allReviews->_isset($index)) {
 			return $this->allReviews->get($index);
 		}	
 		throw new \Exception("No review exists");

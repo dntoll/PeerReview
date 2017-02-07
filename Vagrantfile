@@ -19,9 +19,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  config.vm.network :forwarded_port, guest: 80, host: 8081
-  config.vm.synced_folder "./tests/data/", "/vagrant/tests/data", id: "vagrant1" , :owner => "www-data", :group => "www-data"
-  config.vm.synced_folder "./tests/tmp/", "/vagrant/tests/tmp", id: "vagrant2" , :owner => "www-data", :group => "www-data"
+  config.vm.network :forwarded_port, guest: 80, host: 8089
+  config.vm.synced_folder "./", "/vagrant", id: "vagrant" , :owner => "www-data", :group => "www-data"
   config.vm.synced_folder "./data/", "/vagrant/data", id: "vagrant3" , :owner => "www-data", :group => "www-data"
 
 

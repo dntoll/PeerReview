@@ -136,7 +136,7 @@ class ReviewView {
 		$lv->addSection("List of documents to review", $ret);
 		
 		
-		if ($studentReviewItems->isset($index)) {
+		if ($studentReviewItems->_isset($index)) {
 				$ri = $studentReviewItems->get($index);
 
 				$lv->addSection("Document to review $index", $this->getTestPlanHTML($ri, $index));

@@ -14,7 +14,10 @@ class TestPlanReviewList implements \IteratorAggregate {
 		return $this->list[$index];
 	}
 
-	public function isset($index) {
+	/**
+	 * not this may not be called isset, hence we renamed it to _isset
+	 */
+	public function _isset($index) {
 		return isset($this->list[$index]);
 	}
 
