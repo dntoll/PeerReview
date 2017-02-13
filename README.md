@@ -2,7 +2,7 @@
 Simple Peer Review system for use in courses. Provided as is, but with an intention to adopt to a multi-course system.
 
 ## Installation
-  
+
   * git clone https://github.com/dntoll/PeerReview.git
   * create directories:
     * /data
@@ -19,7 +19,7 @@ Simple Peer Review system for use in courses. Provided as is, but with an intent
     * sudo service nginx restart
     * exit
   * ... edit course/2dv610/settings ...
-  
+
 Two users in the system
 
 Teacheraccount "admin1" with its personal link
@@ -36,3 +36,4 @@ http://localhost:8089/index.php?userID=b5cc34abc6e343f267b3cd934d2aa622
 3. Availability of feedback and reviews should show on menu...
 4. Grade should show grounds for grade...
 6. Grading should be ?
+7. Svensk variant
