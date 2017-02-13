@@ -15,6 +15,7 @@ class Settings {
 
 
 	public function __construct() {
+		$this->reviewSourceType = REVIEW_SOURCE_TYPE;
 		$this->uploadDeadline = END_OF_UPLOAD_PHASE;
 		$this->feedbackStarts = END_OF_REVIEW_PHASE;
 	}
@@ -50,7 +51,7 @@ class Settings {
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
 

@@ -28,11 +28,21 @@ class UploadedFile {
 			throw new NotAFileException("The upload failed");
 		}
 
-		
 
-
-		if (substr($fileArray["name"], strlen($fileArray["name"]) - 3) !== ".md" ) {
-			throw new NotAFileException("The wrong type of file, only text files that ends with [\".md\"] allowed");
+		/** Check what type of review the instance is set to**/
+		if(REVIEW_SOURCE_TYPE==="md")
+		{
+			if (substr($fileArray["name"], strlen($fileArray["name"]) - 3) !== ".md" ) {
+				throw new NotAFileException("The wrong type of file, only text files that ends with [\".md\"] allowed");
+			}
+		}
+		elseif(REVIEW_SOURCE_TYPE ==="pdf") {
+			if (substr($fileArray["name"], strlen($fileArray["name"]) - 4) !== ".pdf" ) {
+				throw new NotAFileException("Filename:".$fileArray["name"]."The wrong type of file, only text files that ends with [\".pdf\"] allowed");
+			}
+		}
+		else {
+			throw new NotAFileException("Corrupt Settings file. You should not be here... Contact your teacher");
 		}
 
 		$this->tempName = $fileArray["tmp_name"];

@@ -23,7 +23,7 @@ class UploadView {
 	public function showHeader(\view\LayoutView $lv) : \view\LayoutView {
 
 		$lv->setHeaderText("Upload your Document", "Write your document in Markdown format and upload the file below.");
-		
+
 		return $lv;
 	}
 
@@ -46,11 +46,29 @@ class UploadView {
 		//$Parsedown = new \Parsedown();
 
 		//$parsed = $Parsedown->text($f->getContent());
-		
-		$parsed = MarkdownExtra::defaultTransform($f->getContent());
 
-		$lv->addSection("The uploaded document","<h2>The uploaded document</h2>
-				<div class='testPlan'>$parsed</div>") ;
+		$parsed = "<div class'testPlan'>EMPTY</div>";
+		switch (REVIEW_SOURCE_TYPE) {
+    case 'md':
+			$parsed = MarkdownExtra::defaultTransform($f->getContent());
+			$lv->addSection("The uploaded document","<h2>The uploaded document</h2>
+					<div class='testPlan'>$parsed</div>") ;
+        break;
+    case 'pdf':
+			$pdf = $f->getPdf();
+/*
+			$lv->addSection("The uploaded document","<h2>The uploaded document</h2>
+			<object width='100%' class='testPlan' data='$pdf' type='application/pdf'>
+		 <embed src='$pdf' type='application/pdf' />
+ </object>");
+*/
+			$lv->addSection("The uploaded document","<h2>The uploaded document</h2>
+			<div class='testPlan'>
+			<embed src='$pdf' type='application/pdf' width='100%' height='100%'>
+			</div>");
+        break;
+    default:
+}
 
 		return $lv;
 	}
@@ -62,7 +80,7 @@ class UploadView {
 		if ($this->settings->isTimeToReview()) {
 			$lv->addWarning("<strong>WARNING</strong> Since the time for uploading has ended, only a single upload will be allowed! Make sure you double check that you upload a correct file.");
 		}
-		
+
 
 		$lv->addSection("Upload instructions","
 	<div class=\"spotlight\">
@@ -72,7 +90,7 @@ class UploadView {
 			</header>
 			<p>The uploaded file can be changed up until $deadlineTimeString. After that only a one time upload can happen (no changes of uploaded file) and no garanties are made that you are going to get reviews.</p>
 		</div>
-		
+
 	</div>
 
 			<ul>
@@ -96,7 +114,7 @@ class UploadView {
 				</form>
 				");
 
-		
+
 
 		return $lv;
 	}
