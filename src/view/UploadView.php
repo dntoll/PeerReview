@@ -64,7 +64,7 @@ class UploadView {
 */
 			$lv->addSection("The uploaded document","<h2>The uploaded document</h2>
 			<div class='testPlan'>
-			<embed src='$pdf' type='application/pdf' width='100%' height='100%'>
+			<embed src='./data/2dv610/TestPlan/25f0e6f039504fa3a4df6bb72478090a.pdf' type='application/pdf' width='100%' height='100%'>
 			</div>");
         break;
     default:

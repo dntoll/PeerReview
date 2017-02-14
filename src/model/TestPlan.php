@@ -33,11 +33,11 @@ class TestPlan {
 
 	public function getPdf() : string {
 
-				$filePathLocal = UPLOAD_PATH . "/TestPlan/" . $this->getName();
+				$filePathLocal = UPLOAD_PATH ."/TestPlan/" . $this->getName();
 				//$fileContent = readfile($filePathLocal);
-
+				$fw = "/data/2dv610/TestPlan/" . $this->getName();
 				if (file_exists($filePathLocal)) {
-					return $filePathLocal;
+					return $fw;
 				}
 				else
 					return "No .pdf file uploaded yet ";

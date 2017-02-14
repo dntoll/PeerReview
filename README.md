@@ -38,4 +38,5 @@ http://localhost:8089/index.php?userID=b5cc34abc6e343f267b3cd934d2aa622
 6. Grading should be ?
 
 7. Ställa in review-source-type i settings. Kolla efter det på rätt ställe(n)
-8. Ändra klasser från TestPlan till ReviewSource?
+8. Spara alla filer med rätt filändelse.
+9. Ändra klasser från TestPlan till ReviewSource?
