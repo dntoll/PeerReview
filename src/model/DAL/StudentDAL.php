@@ -11,7 +11,7 @@ class StudentDAL {
 	}
 
 	private function getFolder() {
-		
+
 		return $this->settings->getUploadPath() . DIRECTORY_SEPARATOR . "Users";
 	}
 
@@ -58,8 +58,8 @@ class StudentDAL {
 	}
 
 	public function saveUserTestPlan(UploadedFile $file, UniqueID $student) {
-		return file_put_contents($this->getFolder() .  DIRECTORY_SEPARATOR . $student->getName(), $file->getMD5());
+		return file_put_contents($this->getFolder() .  DIRECTORY_SEPARATOR . $student->getName(), $file->getMD5().".".REVIEW_SOURCE_TYPE);
 	}
 
-	
+
 }
