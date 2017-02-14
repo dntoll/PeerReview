@@ -11,16 +11,16 @@ define("COURSE_PRESS_SALT_USERID", 'A random salt');
 define("COURSE_PAGE_LINK", "https://coursepage");
 
 //A review source type.
-define("REVIEW_SOURCE_TYPE","md");
+define("REVIEW_SOURCE_TYPE","pdf");
 
 
 $day = 13;
 $month = 02;
-$year = 2016;
+$year = 2017;
 define("END_OF_UPLOAD_PHASE", mktime(0,0,0,$month, $day, $year));
 
-$day = 29;
-$month = 11;
+$day = 17;
+$month = 02;
 $year = 2017;
 define("END_OF_REVIEW_PHASE", mktime(0,0,0,$month, $day, $year));
 

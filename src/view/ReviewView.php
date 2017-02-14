@@ -14,28 +14,28 @@ class ReviewView {
 	public static $New = "New";
 
 	public function __construct(\model\StudentModel $m) {
-		
+
 		$this->m = $m;
 
 
-		$clarityGradeTitles = require(COURSE_FILES . "/clarityGrades.inc"); 
+		$clarityGradeTitles = require(COURSE_FILES . "/clarityGrades.inc");
 
 
 		$this->clarityFactorView = new ReviewFactorView("clarity", $clarityGradeTitles);
 
 
-		$completenessGradeTitles = require(COURSE_FILES . "/completenessGrades.inc"); 
+		$completenessGradeTitles = require(COURSE_FILES . "/completenessGrades.inc");
 
 
 		$this->completenessFactorView = new ReviewFactorView("completeness", $completenessGradeTitles);
 
 
-		$contentGrade = require(COURSE_FILES . "/contentGrades.inc"); 
-		
+		$contentGrade = require(COURSE_FILES . "/contentGrades.inc");
+
 
 		$this->contentFactorView = new ReviewFactorView("content", $contentGrade);
 	}
-	
+
 	public function studentSubmitsReview() : bool {
 		return isset($_POST[self::$UploadID]);
 	}
@@ -67,16 +67,16 @@ class ReviewView {
 		$ret .= $this->contentFactorView->getHTMLContent($ri->getContent(), "Content");
 		$ret .= "</div>";
 
-		
+
 		return $ret;
 	}
 
 	public function showHeader(\view\LayoutView $lv) : \view\LayoutView{
-		
+
 		$lv->setHeaderText("Review documents", "You should review and grade other students documents. The more the better.");
 		return $lv;
 	}
-	
+
 	public function showReviewForm(\model\TestPlanReviewList $studentReviewItems, \model\UniqueID $user, int $index, \view\LayoutView $lv) : \view\LayoutView {
 		$ret ="<div class=\"spotlight\">
 		<div class=\"content\">
@@ -84,11 +84,11 @@ class ReviewView {
 			<h2>List of documents to review</h2>
 			</header>
 			<p>You can do as many reviews as you like. Your reviews that get the highest feedback will determine your grade. Note that reviews that got feedback can no longer be changed. </p>
-			
+
 		</div>
-		
+
 	</div>";
-		
+
 
 		$ret .= "<div class='menu'><ul>";
 		$uid = $user->getName();
@@ -98,9 +98,9 @@ class ReviewView {
 		foreach($studentReviewItems as $key => $ri) {
 			$title = "Document # $key ";
 			if ($ri->isFinished()) {
-				
+
 				if ($this->m->reviewHasFeedback($ri)) {
-					$title .= "(has received feedback)";	
+					$title .= "(has received feedback)";
 				} else {
 					$title .= "(complete)";
 				}
@@ -108,8 +108,8 @@ class ReviewView {
 				$title .= " (not complete!)";
 				$canOpenNew = false;
 			}
-			
-			
+
+
 
 			if ($key === $index) {
 				$ret .= "<li><span class='menuItemSelected'>$title</span></li>";
@@ -126,7 +126,7 @@ class ReviewView {
 					$ret .= "<li><a class='menuItem' href='?action=review&New'>Review another document</a></li>";
 				}
 			} else {
-				$ret .= "<li>No more plans to review</li>";	
+				$ret .= "<li>No more plans to review</li>";
 			}
 		} else {
 			$ret .= "<li>Complete existing plans to start a new review...</li>";
@@ -134,8 +134,8 @@ class ReviewView {
 		$ret .= "</ul></div>";
 
 		$lv->addSection("List of documents to review", $ret);
-		
-		
+
+
 		if ($studentReviewItems->_isset($index)) {
 				$ri = $studentReviewItems->get($index);
 
@@ -145,8 +145,8 @@ class ReviewView {
 					$ret = "<header class=\"major\"><h2>Your saved review</h2></header>";
 					$ret .= $this->showReview($ri, " on document # $index ");
 					$ret .= "<div class='Warning'>You cannot change a review that has got feedback</div>";
-					
-				
+
+
 					$lv->addSection("Your saved review", $ret);
 					$lv = $this->showFeedbackOnThisReview($ri, $user, $lv);
 				} else {
@@ -154,8 +154,8 @@ class ReviewView {
 					$ret .= $this->getReviewForm($ri, $user, $index);
 					$lv->addSection("Review form", $ret);
 				}
-				
-				
+
+
 		}
 		return $lv;
 	}
@@ -164,12 +164,23 @@ class ReviewView {
 
 		$ret = "<header class=\"major\"><h2>Document to review # $index</h2></header>";
 		$tp = $ri->getTestPlan();
-		//$Parsedown = new \Parsedown();
-		//$parsed = $Parsedown->text($tp->getContent());
-		//
-		//
-		$parsed = MarkdownExtra::defaultTransform($tp->getContent());
-		$ret .= "<div class='testPlan'>$parsed</div>";
+
+		switch (REVIEW_SOURCE_TYPE) {
+    case 'md':
+				$parsed = MarkdownExtra::defaultTransform($tp->getContent());
+				$ret .= "<div class='testPlan'>$parsed</div>";
+        break;
+    case 'pdf':
+			$pdf = $tp->getPdf();
+			$ret .=
+			"<object data='$pdf' type='application/pdf' width='100%' height='842px'>
+   		<p>This browser does not support PDFs. Please download the PDF to view it: <a href='$pdf'>Download PDF</a>.</p>
+	 		</object>
+			";
+        break;
+    default:
+}
+
 		return $ret;
 	}
 
@@ -186,11 +197,11 @@ class ReviewView {
 		$formContent .= file_get_contents(COURSE_FILES . "/contentDescription.inc");
 		$formContent .= $this->contentFactorView->getFormContent($ri->getContent(), "reviewform");
 		$uid = $user->getName();
-		
 
-		$ret = "	
+
+		$ret = "
 					<form  method='post' enctype='multipart/form-data' id='reviewform'  action='?action=review&index=$index'>
-				    
+
 				    $formContent
 				    </br>
 				    <input type='submit' value='Save Review' name='submit'><br/>
@@ -203,14 +214,14 @@ class ReviewView {
 		$feedbacks = $this->m->getReviewFeedbackList($ri);
 
 		foreach ($feedbacks as $key => $f) {
-			$rfv = new ReviewFeedbackView($this->m, $reviewer); 
-			
+			$rfv = new ReviewFeedbackView($this->m, $reviewer);
+
 			$ret .= $rfv->getFeedbackHTML($f, "your review from author # $key");
-			
+
 		}
 		$lv->addSection("Feedback on your review", $ret);
 
 		return $lv;
-		
+
 	}
 }

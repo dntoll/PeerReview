@@ -43,9 +43,6 @@ class UploadView {
 	}
 
 	public function showTestPlan(\model\TestPlan $f, \view\LayoutView $lv) : \view\LayoutView{
-		//$Parsedown = new \Parsedown();
-
-		//$parsed = $Parsedown->text($f->getContent());
 
 		$parsed = "<div class'testPlan'>EMPTY</div>";
 		switch (REVIEW_SOURCE_TYPE) {
@@ -56,16 +53,11 @@ class UploadView {
         break;
     case 'pdf':
 			$pdf = $f->getPdf();
-/*
 			$lv->addSection("The uploaded document","<h2>The uploaded document</h2>
-			<object width='100%' class='testPlan' data='$pdf' type='application/pdf'>
-		 <embed src='$pdf' type='application/pdf' />
- </object>");
-*/
-			$lv->addSection("The uploaded document","<h2>The uploaded document</h2>
-			<div class='testPlan'>
-			<embed src='./data/2dv610/TestPlan/karaktar.pdf' type='application/pdf' width='100%' height='100%'>
-			</div>");
+			<object data='$pdf' type='application/pdf' width='100%' height='842px'>
+   		<p>This browser does not support PDFs. Please download the PDF to view it: <a href='$pdf'>Download PDF</a>.</p>
+	 		</object>
+			");
         break;
     default:
 }
