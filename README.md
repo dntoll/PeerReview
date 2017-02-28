@@ -38,4 +38,4 @@ http://localhost:8089/index.php?userID=b5cc34abc6e343f267b3cd934d2aa622
 6. Grading should be ?
 
 7. Ändra ord från TestPlan till ReviewSource?
-8. Svenska.
+8. Svenska
