@@ -15,7 +15,7 @@ class TeacherView {
 		$this->rv = new ReviewView($this->m);
 
 
-		$gradeTitles = require(COURSE_FILES . "/reviewGrades.inc");
+		$gradeTitles = require(COURSE_FILES . INFORMATION_TEXT . "/reviewGrades.inc");
 		$this->teacherReviewView = new ReviewFactorView("review", $gradeTitles);
 
 
@@ -26,12 +26,12 @@ class TeacherView {
 
 
 		if (isset($_GET["st"])) {
-			$this->studentReviewToShowMD5 = $_GET["st"];	
+			$this->studentReviewToShowMD5 = $_GET["st"];
 		} else {
 			$this->studentReviewToShowMD5 = NULL;
 		}
 		if (isset($_GET["tp"])) {
-			$this->planToShowMD5 = $_GET["tp"];	
+			$this->planToShowMD5 = $_GET["tp"];
 		} else {
 			$this->planToShowMD5 = NULL;
 		}
@@ -54,7 +54,7 @@ class TeacherView {
 		return $this->m->getTestPlanFromMD5($this->planToShowMD5);
 	}
 
-	
+
 
 	public static function isTryingToGetTeacherAccess() : bool {
 		return isset($_GET["teacher"]);
@@ -86,13 +86,13 @@ private function array_median($array) {
 
 	public function show(\model\UniqueID $user, \view\LayoutView $lv) : \view\LayoutView {
 		$ret ="";
-		
+
 		$students = $this->m->getAllStudents();
 		$testPlans = $this->m->getAllTestPlans();
 
-		
+
 		asort($students);
-		
+
 
 		$maxReviews = 0;
 		$report = array();
@@ -102,7 +102,7 @@ private function array_median($array) {
 			foreach($students as $studentID => $studentTestPlanMD5) {
 				if($studentTestPlanMD5 === $testPlanMD5) {
 					$authors[] = $studentID;
-				} 
+				}
 			}
 
 			$reviews = $this->m->getAllReviews($testPlan);
@@ -127,7 +127,7 @@ private function array_median($array) {
 					}
 				}
 			}
-			
+
 			$report[$testPlanMD5] = array("Authors" => $authors, "Reviews" => $reviews);
 		}
 
@@ -140,7 +140,7 @@ private function array_median($array) {
 							<th>Median Score</th>
 							<th>Factor</th>
 							<th>min_med_max</th>";
-		
+
 		for ($i = 0; $i< $maxReviews ; $i++) {
 			$ret .= 	   "<th>$i</th>";
 			$ret .= 	   "<th>time </th>";
@@ -198,7 +198,7 @@ private function array_median($array) {
 
 
 			$addReviewURL = "?teacher&tp=$testPlanMD5&" . self::$TEACHER_REVIEW_DOCUMENT ;
-			
+
 
 			if ($teacherHasReviewed) {
 				$color = "class='checked'";
@@ -217,14 +217,14 @@ private function array_median($array) {
 
 
 			$score = $grader->getScore($report[$testPlanMD5]["Reviews"])->getInterpretableValue();
-			
+
 			$ret .= "<td>$score</td>";
 
-			
 
-			
 
-			
+
+
+
 
 			$ret .= "<td>Cla<br/>Com<br/>Con<br/></td>
 					<td>$minc->$medc->$maxc<br/>
@@ -243,10 +243,10 @@ private function array_median($array) {
 				$ret .= $review->getTotalTimeMinutes() . " min";
 				$ret .= "</td>";
 			}
-			
 
 
-			
+
+
 			$index++;
 			$ret .= "</tr>";
 
@@ -256,7 +256,7 @@ private function array_median($array) {
 		$ret .= "</tbody></table>";
 
 		$lv->addSection("Documents", $ret);
-		
+
 
 		$ret = "<table>
 					<thead>
@@ -302,7 +302,7 @@ private function array_median($array) {
 
 			$score = $grader->getScore($allReviewsReceived);
 			$documentGrade = $grader->getGradeFromScore($score);
-			
+
 			$reviewGrade = $grader->getReviewScore($allReviewsMade, $this->m);
 			$ret .= "<tr>
 						<td>$index</td>
@@ -318,7 +318,7 @@ private function array_median($array) {
 				$mostSimiliarTP = $plan->getMD5();
 				foreach($testPlans as $testPlanMD52 => $testPlan2) {
 					if ($plan->getMD5() !== $testPlanMD52) {
-						
+
 						similar_text($plan->getContent(), $testPlan2->getContent(), $percent);
 						$percent = round($percent, 1);
 
@@ -342,9 +342,9 @@ private function array_median($array) {
 						<td>$numReviewsReceived</td>
 						<td>$numReviewsReceivedWords</td>
 						<td>$shouldRespondToReviews</td>";
-						
+
 			$ret .= "</tr>";
-			
+
 		}
 
 		$ret .= "</tbody></table>";
@@ -354,11 +354,11 @@ private function array_median($array) {
 		$ret = "";
 		$uid = $user->getName();
 		if (isset($planToShow)) {
-			
+
 			$lv = $this->uv->showTestPlan($planToShow, $lv);
 
 
-		
+
 			if (isset($reviewToShow)) {
 				$ret .= "<h2>Review by reviewing student : ".$reviewToShow->getReviewer()->getName()."</h2>";
 				$ret .= $this->rv->showReview($reviewToShow);
@@ -376,12 +376,12 @@ private function array_median($array) {
 
 
 				if (isset($feedbacksToShow)) {
-				
+
 					foreach ($feedbacksToShow as $key => $feedback) {
 						$ret = "<h2>Feedback from the authors " . $feedback->getFeedbacker()->getName() ."</h2>";
 						$rfv = new \view\ReviewFeedbackView($this->m, $feedback->getFeedbacker());
 						$ret .= $rfv->getFeedbackHTML($feedback, "");
-						
+
 						$fb = $feedback->getTeacherFeedback();
 
 						$ret .= "
@@ -390,15 +390,15 @@ private function array_median($array) {
 									    <br/>";
 								$ret .= $this->teacherFeedbackViews[$key]->getFormContent($fb, "teacherFeedback$key");
 								$ret .= "<input type='submit' value='Save Feedback' name='submitFeedback'></form>";
-						$lv->addSection("Teacher Feedback on Feedback", $ret);				
+						$lv->addSection("Teacher Feedback on Feedback", $ret);
 					}
 				}
 			}
 		}
 
-		
-		
-		
+
+
+
 		return $lv;
 	}
 
@@ -450,9 +450,9 @@ private function array_median($array) {
 			$color = "class='attention'";
 		}
 		if ($failedReview) {
-			$color = "class='strikethrough'";	
+			$color = "class='strikethrough'";
 		}
-		
+
 
 		return  "<td colspan=\"$span\" $color>" . $g->getInterpretableValue() . "</td>";
 
@@ -461,7 +461,7 @@ private function array_median($array) {
 	private function showReview(\model\TestPlanReview $review, string $testPlanMD5) {
 
 		$ret = "<table>";
-		
+
 		if ($this->settings->isTeacher($review->getReviewer())) {
 			$ret .= "<tr>
 						<th colspan='3' class='checked'>Teacher Review</th>
@@ -469,10 +469,10 @@ private function array_median($array) {
 		}
 
 
-		
 
 
-		
+
+
 		$ret .= "<tr>
 					<th>Cla:</th><th>Com:</th><th>Con:</th>
 				</tr>";
@@ -488,16 +488,16 @@ private function array_median($array) {
 		$ret .= $this->getColoredGrading($review->getClarity()->getGrading(), 1, $teacherHasChecked, $failedReview);
 		$ret .= $this->getColoredGrading($review->getCompleteness()->getGrading(), 1, $teacherHasChecked, $failedReview);
 		$ret .= $this->getColoredGrading($review->getContent()->getGrading(), 1, $teacherHasChecked, $failedReview);
-		
+
 		$feedbacks = $this->m->getReviewFeedbackList($review);
 
-				
+
 
 		foreach ($feedbacks as $feedback) {
 			$ret .= "<tr><th>Feed:</th>";
 			$teacherFeed = $feedback->getTeacherFeedback();
 
-			
+
 			$teacherHasCheckedFeed = $teacherFeed->getGrading()->isFinished();
 			if ($teacherFeed->getGrading()->getValue() == \model\Grading::FAILED) {
 				$failedFeed = true;
@@ -507,7 +507,7 @@ private function array_median($array) {
 
 			$ret .= $this->getColoredGrading($feedback->getFeedback()->getGrading(), 2, $teacherHasCheckedFeed, $failedFeed);
 
-			
+
 			$ret .= "</tr>";
 		}
 
@@ -519,7 +519,7 @@ private function array_median($array) {
 		 $studentID = $review->getReviewer()->getName();
 		$ret .= "<tr><td colspan=\"3\"><a href='index.php?teacher&st=$studentID&tp=$testPlanMD5#Review'>Check";
 			$ret .= "</a></td></tr>";
-		
+
 		$ret .= "</table>";
 		return $ret;
 	}

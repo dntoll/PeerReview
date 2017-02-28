@@ -18,19 +18,19 @@ class ReviewView {
 		$this->m = $m;
 
 
-		$clarityGradeTitles = require(COURSE_FILES . INFORMATION_TEXT ."/clarityGrades.inc");
+		$clarityGradeTitles = require(COURSE_FILES . INFORMATION_TEXT . "/clarityGrades.inc");
 
 
 		$this->clarityFactorView = new ReviewFactorView("clarity", $clarityGradeTitles);
 
 
-		$completenessGradeTitles = require(COURSE_FILES . "/completenessGrades.inc");
+		$completenessGradeTitles = require(COURSE_FILES . INFORMATION_TEXT . "/completenessGrades.inc");
 
 
 		$this->completenessFactorView = new ReviewFactorView("completeness", $completenessGradeTitles);
 
 
-		$contentGrade = require(COURSE_FILES . "/contentGrades.inc");
+		$contentGrade = require(COURSE_FILES . INFORMATION_TEXT . "/contentGrades.inc");
 
 
 		$this->contentFactorView = new ReviewFactorView("content", $contentGrade);

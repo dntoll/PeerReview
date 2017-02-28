@@ -22,7 +22,7 @@ class ReviewFeedbackView {
 		$this->feedbacker = $feedbacker;
 
 
-		$this->reviewFeedbackGradeTitles = require(COURSE_FILES . "/reviewGrades.inc");
+		$this->reviewFeedbackGradeTitles = require(COURSE_FILES . INFORMATION_TEXT . "/reviewGrades.inc");
 
 		$this->feedbackFormView = new ReviewFactorView("feedback", $this->reviewFeedbackGradeTitles);
 
@@ -43,12 +43,12 @@ class ReviewFeedbackView {
 
 
 	public function getActiveReview() : \model\TestPlanReview {
-		
+
 		$index = $this->getReviewIndex();
 
 		if ($this->allReviews->_isset($index)) {
 			return $this->allReviews->get($index);
-		}	
+		}
 		throw new \Exception("No review exists");
 	}
 
@@ -66,9 +66,9 @@ class ReviewFeedbackView {
 
 
 	public function viewReview(ReviewView $rv, LayoutView $lv) : LayoutView {
-		
-		
-		$lv = $this->showReviewSelection($lv);		
+
+
+		$lv = $this->showReviewSelection($lv);
 
 		$studentReview = $this->getActiveReview();
 		$index = $this->getReviewIndex();
@@ -91,19 +91,19 @@ class ReviewFeedbackView {
 					$teacherHasSaidHisPiece = true;
 				}
 
-			} 
+			}
 
 			if ($teacherHasSaidHisPiece == false)
 				$lv->addSection("Give Feedback on $index", $this->showReviewFeedbackForm($studentReview));
 			else
 				$lv->addSection("Your Feedback on $index", $this->showReviewFeedbackAndTeacherNotes($studentReview));
 
-			
+
 		} else {
 			$lv->addInformation("The reviewer has not completed the review.");
 		}
 
-		
+
 		return $lv;
 	}
 
@@ -112,12 +112,12 @@ class ReviewFeedbackView {
 	}
 
 	private function getForm(\model\ReviewFeedback $feedback) {
-		
+
 		$formText = $this->feedbackFormView->getFormContent($feedback->getFeedback(), "feedbackform");
 
-		
+
 		$done = $feedback->isFinished() ?  "" : "<div class='Warning'>Warning: This Feedback is not complete.</div>";
-		
+
 		return "
 		<header class=\"major\"><h2>Give feedback on the review:</h2></header>
 <div class='FeedbackForm'>
@@ -145,17 +145,17 @@ Remember different people have different views and may interpret the same inform
 	<br/>
 	<input type='submit' value='Save review feedback' name='submit'>
 </form>
-	
+
 </div>
 
 	";
 	}
 
 
-	
+
 
 	private function showReviewFeedbackAndTeacherNotes(\model\TestPlanReview $item) : string {
-		
+
 		if ($this->m->hasFeedbacked($this->feedbacker, $item)) {
 			$feedback = $this->m->getReviewFeedback($this->feedbacker, $item);
 			return $this->getFeedbackHTML($feedback, "Your feedback to this reviewer");
@@ -165,15 +165,15 @@ Remember different people have different views and may interpret the same inform
 	}
 
 	private function showReviewFeedbackForm(\model\TestPlanReview $item) : string {
-		
+
 		if ($this->m->hasFeedbacked($this->feedbacker, $item)) {
 			$feedback = $this->m->getReviewFeedback($this->feedbacker, $item);
 		} else {
 			//extract data
 			$feedback = new \model\ReviewFeedback(new \model\ReviewFactor("", new \model\Grading()), $this->feedbacker, $this->getActiveReview());
-		} 
+		}
 
-		return $this->getForm($feedback);	
+		return $this->getForm($feedback);
 	}
 
 	public function showHeader(\view\LayoutView $lv) : \view\LayoutView {
@@ -198,7 +198,7 @@ Remember different people have different views and may interpret the same inform
 					$feedback = $this->m->getReviewFeedback($this->feedbacker, $review);
 					if ($feedback->isFinished())
 						$status = "(Complete)";
-					else 
+					else
 						$status = "(not complete!)";
 				} else {
 					$status = "(You have not given feedback on this review)";
@@ -211,9 +211,9 @@ Remember different people have different views and may interpret the same inform
 				}
 			} else {
 				//$ret .= "<span class='menuItemSelected' >Review # $key (not complete)</span> ";
-				
+
 			}
-			
+
 		}
 		$ret .= "</ul></div>";
 		$lv->addSection("List of reviews", $ret);
