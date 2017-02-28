@@ -32,3 +32,4 @@ define("TEACHERS", array("admin1", "admin2") );
 define("STUDENT_FILE", "/vagrant/course/2dv610/students.inc");
 define("UPLOAD_PATH", "/vagrant/data/2dv610");
 define("COURSE_FILES", "/vagrant/course/2dv610/");
+define("INFORMATION_TEXT","/vagrant/course/2dv610/information_text");

@@ -18,7 +18,7 @@ class ReviewView {
 		$this->m = $m;
 
 
-		$clarityGradeTitles = require(COURSE_FILES . "/clarityGrades.inc");
+		$clarityGradeTitles = require(COURSE_FILES . INFORMATION_TEXT ."/clarityGrades.inc");
 
 
 		$this->clarityFactorView = new ReviewFactorView("clarity", $clarityGradeTitles);
@@ -190,11 +190,11 @@ class ReviewView {
 		if ($ri->isFinished() === false) {
 			$formContent .= "<div class='Warning'>You need to complete all fields and give grades on all categories</div>";
 		}
-		$formContent .= file_get_contents(COURSE_FILES . "/clarityDescription.inc");
+		$formContent .= file_get_contents(COURSE_FILES . INFORMATION_TEXT . "/clarityDescription.inc");
 		$formContent .= $this->clarityFactorView->getFormContent($ri->getClarity(), "reviewform");
-		$formContent .= file_get_contents(COURSE_FILES . "/completenessDescription.inc");
+		$formContent .= file_get_contents(COURSE_FILES . INFORMATION_TEXT . "/completenessDescription.inc");
 		$formContent .= $this->completenessFactorView->getFormContent($ri->getCompleteness(), "reviewform");
-		$formContent .= file_get_contents(COURSE_FILES . "/contentDescription.inc");
+		$formContent .= file_get_contents(COURSE_FILES . INFORMATION_TEXT . "/contentDescription.inc");
 		$formContent .= $this->contentFactorView->getFormContent($ri->getContent(), "reviewform");
 		$uid = $user->getName();
 
