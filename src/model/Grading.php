@@ -12,6 +12,7 @@ class Grading {
 
 
 	public function __construct(int $value = -1) {
+		require_once(COURSE_FILES . INFORMATION_TEXT . "gradingInterpretableValue.inc");
 		$this->value = $value;
 		if ($this->value < -1 || $this->value > 4)
 			throw new \Exception("Not a valid Grading");
@@ -25,14 +26,15 @@ class Grading {
 		return $this->value;
 	}
 
+
 	public function getInterpretableValue() : string {
 		switch($this->value) {
-			case self::NOT_GRADED : return "Not graded ";
-			case self::NOT_AN_ATTEMPT : return  "Not an attempt";
-			case self::FAILED : return "Failed";
-			case self::SUFFICIENT : return "Sufficient";
-			case self::GOOD : return "Good";
-			case self::EXCELLENT : return "Excellent";
+			case self::NOT_GRADED : return TEXT_NOT_GRADED;
+			case self::NOT_AN_ATTEMPT : return  TEXT_NOT_AN_ATTEMPT;
+			case self::FAILED : return TEXT_FAILED;
+			case self::SUFFICIENT : return TEXT_SUFFICIENT;
+			case self::GOOD : return TEXT_GOOD;
+			case self::EXCELLENT : return TEXT_EXCELLENT;
 		}
 	}
 }

@@ -14,13 +14,13 @@ define("COURSE_PAGE_LINK", "https://coursepage");
 define("REVIEW_SOURCE_TYPE","pdf");
 
 
-$day = 13;
+$day = 28;
 $month = 02;
 $year = 2017;
 define("END_OF_UPLOAD_PHASE", mktime(0,0,0,$month, $day, $year));
 
 $day = 17;
-$month = 02;
+$month = 03;
 $year = 2017;
 define("END_OF_REVIEW_PHASE", mktime(0,0,0,$month, $day, $year));
 
@@ -32,4 +32,4 @@ define("TEACHERS", array("admin1", "admin2") );
 define("STUDENT_FILE", "/vagrant/course/2dv610/students.inc");
 define("UPLOAD_PATH", "/vagrant/data/2dv610");
 define("COURSE_FILES", "/vagrant/course/2dv610/");
-define("INFORMATION_TEXT","/vagrant/course/2dv610/information_text");
+define("INFORMATION_TEXT","information_text/");
