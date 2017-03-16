@@ -1,7 +1,5 @@
 <?php
-
 namespace view;
-
 
 
 
@@ -20,9 +18,9 @@ class StudentView {
 		$this->settings = $s;
 	}
 
-	
 
-	
+
+
 
 	public function redirectBase(\model\UniqueID $uid) {
 		$action = "";
@@ -49,61 +47,69 @@ class StudentView {
 		}
 	}
 
-	
 
-	
+
+
 
 
 
 	public function showNothingToReviewNotice(\view\LayoutView $lv) : \view\LayoutView {
-		$lv->addInformation("There are no documents for you to review at this point, you have to wait until more are posted");
+		include("./language.php");
+		$lv->addInformation($lang[LANGUAGE]['review']['nothing_to_review']);
 		return $lv;
 	}
 
 	public function getWrongUserIDNote(\view\LayoutView $lv) : \view\LayoutView  {
+		include("./language.php");
 
-		$lv->setHeaderText("No user found", "This is an error.");
+		$lv->setHeaderText($lang[LANGUAGE]['session']['no_user_found'], $lang[LANGUAGE]['session']['error']);
 
-		$lv->addWarning( "<h2>No active session.</h2> <p>This is probably due to that you have returned to the site when the session has ended. <a href=\"" . COURSE_PAGE_LINK . "\">Use the link provided by your course administrator on your course web space</a> to get access to PeerReview. If you have and still get this message, please contact your course administrator.</p>");
+		$lv->addWarning($lang[LANGUAGE]['session']['no_active_session_info']);
 		return $lv;
 	}
 
 	public function showStudentNeedsToUploadFirst(\view\LayoutView $lv) : \view\LayoutView  {
-		$lv->addWarning( "You need to upload a document before you can review other students documents");
+		include("./language.php");
+		$lv->addWarning($lang[LANGUAGE]['review']['need_to_upload_first']);
 		return $lv;
 	}
 
 	public function showNotTimeForReviews(\view\LayoutView $lv) : \view\LayoutView {
+		include("./language.php");
 		$deadlineTimeString = $this->settings->getDeadlineTimeString();
-				
-		$lv->addWarning( "You need to wait until the deadline for uploading documents has expired. After $deadlineTimeString the review phase starts");
+
+		$lv->addWarning($lang[LANGUAGE]['review']['not_time_for_reviews']." ".$deadlineTimeString);
 		return $lv;
 	}
 
 	public function notTimeToGiveFeedbackNotice(\view\LayoutView $lv) : \view\LayoutView {
+		include("./language.php");
 		$deadlineTimeString = $this->settings->getFeedbackDeadlineTimeString();
 
 
-		$lv->addWarning( "This is not the time for giving feedback to reviews, first you must make reviews. The feedback phase starts $deadlineTimeString");
+		$lv->addWarning($lang[LANGUAGE]['feedback']['not_time_for_feedback']." ".$deadlineTimeString);
 		return $lv;
 	}
 
 	public function showNoAvailableTestPlans(\view\LayoutView $lv) : \view\LayoutView {
-		$lv->addInformation( "There is currently no available document to a review. You have to wait until more documents are submitted.");
+		include("./language.php");
+		$lv->addInformation($lang[LANGUAGE]['review']['no_available_review_document']);
 		return $lv;
 	}
 
 	public function showStudentShouldDoFeedbackNow(\view\LayoutView $lv) : \view\LayoutView {
-		$lv->addInformation( "It is time to look at your feedback ");
+		include("./language.php");
+		$lv->addInformation($lang[LANGUAGE]['feedback']['should_do_feedback_now']);
 		return $lv;
 	}
 
 	public function noReviewsRecievedYetNotice(\view\LayoutView $lv) : \view\LayoutView {
-		$lv->addInformation( "You have not yet recieved any reviews on your document. You need to wait until reviews on your document are submitted before you can give feedback on those. ");
+		include("./language.php");
+		$lv->addInformation($lang[LANGUAGE]['review']['no_reviews_yet']);
 		return $lv;
 	}
 
-	
+
 
 
 	public function studentWantsToUpload() {
@@ -119,33 +125,34 @@ class StudentView {
 	}
 
 	public function studentWantsToViewGrade() {
-		return isset($_GET[self::NavigationAction]) && $_GET[self::NavigationAction] === "score";	
+		return isset($_GET[self::NavigationAction]) && $_GET[self::NavigationAction] === "score";
 	}
 
 	public function showMenu(\model\UniqueID $student, string $submenu, bool $isTeacher) : string {
+		include("./language.php");
 
 		$uid = $student->getName();
 		$ret = "<div id=\"nav\"><ul>";
 		$ret .=  "<li>
-					
-					<a class='menuItem' href='?".self::NavigationAction."=upload'>Upload your document</a>
-				</li>
-				<li>
-					
-					<a class='menuItem' href='?".self::NavigationAction."=review'>Review</a>
-				</li>
-				<li>
-					
-					<a class='menuItem' href='?".self::NavigationAction."=feedback'>Give Feedback on Reviews</a>
-				</li>
-				<li>
-					<a class='menuItem' href='?".self::NavigationAction."=score'>Check scores</a>
-				</li> ";
-		
-		if ($isTeacher) {
-			$ret .=  "<li><a class='menuItem' href='?teacher&".self::NavigationAction."=plan'>Teacher View</a></li> ";
 
-		} 
+					<a class='menuItem' href='?".self::NavigationAction."=upload'>".$lang[LANGUAGE]['navigation']['upload']."</a>
+				</li>
+				<li>
+
+					<a class='menuItem' href='?".self::NavigationAction."=review'>".$lang[LANGUAGE]['navigation']['review']."</a>
+				</li>
+				<li>
+
+					<a class='menuItem' href='?".self::NavigationAction."=feedback'>".$lang[LANGUAGE]['navigation']['feedback']."</a>
+				</li>
+				<li>
+					<a class='menuItem' href='?".self::NavigationAction."=score'>".$lang[LANGUAGE]['navigation']['score']."</a>
+				</li> ";
+
+		if ($isTeacher) {
+			$ret .=  "<li><a class='menuItem' href='?teacher&".self::NavigationAction."=plan'>".$lang[LANGUAGE]['navigation']['teacher']."</a></li> ";
+
+		}
 		$ret .= "</ul>$submenu</div>";
 		return $ret;
 

@@ -10,8 +10,15 @@ define("COURSE_PRESS_SALT_USERID", 'A random salt');
 */
 define("COURSE_PAGE_LINK", "https://coursepage");
 
-//A review source type.
+/*
+  A review source type.
+*/
 define("REVIEW_SOURCE_TYPE","pdf");
+
+/****
+  Language choise
+****/
+define("LANGUAGE","en");
 
 
 $day = 28;
