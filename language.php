@@ -4,11 +4,17 @@
 ENGLISH
 ***********/
 
+/*** HEADINGS ***/
+$lang['en']['headings']['score_top_heading'] = "Check score";
+$lang['en']['headings']['score_sub_heading'] = "Check how your document was scored by other students and also how your reviews was scored.";
+
 /*** NAVIGATION ***/
 $lang['en']['navigation']['upload'] = "Upload your document";
 $lang['en']['navigation']['review'] = "Review";
 $lang['en']['navigation']['feedback'] = "Give Feedback on Reviews";
 $lang['en']['navigation']['score'] = "Check scores";
+$lang['en']['navigation']['score_section_document'] = "Your uploaded document score";
+$lang['en']['navigation']['score_section_review'] = "Your reviewer score";
 $lang['en']['navigation']['teacher'] = "Teacher View";
 
 
@@ -24,11 +30,33 @@ $lang['en']['review']['not_time_for_reviews'] = "You need to wait until the dead
 $lang['en']['review']['no_available_review_document'] = "There is currently no available document to a review. You have to wait until more documents are submitted.";
 $lang['en']['review']['no_reviews_yet'] = "You have not yet recieved any reviews on your document. You need to wait until reviews on your document are submitted before you can give feedback on those.";
 
-
 /*** FEEDBACK ***/
 $lang['en']['feedback']['not_time_for_feedback'] = "This is not the time for giving feedback to reviews, first you must make reviews. The feedback phase starts:";
 $lang['en']['feedback']['should_do_feedback_now'] = "It is time to look at your feedback";
 
+/*** GRADING ***/
+$lang['en']['grading']['must_upload'] = "You must upload a document, do reviews and receive feedback to check the grading";
+$lang['en']['grading']['no_document'] = "You need to upload a document first";
+$lang['en']['grading']['page_heading_1'] = "Your uploaded document's score";
+$lang['en']['grading']['page_paragraph_1'] = "This table gives an overview over how your document was scored by other students. It also shows feedback from you (and your group) and if the teacher has graded the review. Any text that is <span class='strikethrough'>strikethrough</span> indicates that the teacher has either failed the review or the feedback. Those reviews or feedbacks are not counted when you are scored.";
+$lang['en']['grading']['table_heading_review_nr'] = "Review #";
+$lang['en']['grading']['table_heading_clarity'] = "Clarity";
+$lang['en']['grading']['table_heading_completeness'] = "Completeness";
+$lang['en']['grading']['table_heading_content'] = "Content";
+$lang['en']['grading']['table_heading_feedback'] = "Feedback";
+$lang['en']['grading']['table_heading_teacher_grading'] = "Teacher grading of review";
+$lang['en']['grading']['should_provide_feedback'] = "You should provide feedback on this review";
+$lang['en']['grading']['no_received_reviews'] = "You have not yet got any reviews on your document!";
+$lang['en']['grading']['median_score'] = "Your Median Score, (note that the final score may change after teacher has reviewed)";
+$lang['en']['grading']['page_heading_2'] = "Your review score";
+$lang['en']['grading']['page_paragraph_2'] = "This table gives an overview over how your reviews were received by the authors of those documents and if the teacher has graded the review or feedback. Any text that is <span class='strikethrough'>strikethrough</span> indicates that the teacher has either failed the review or the feedback. Those reviews or feedbacks are not counted when you are scored.";
+$lang['en']['grading']['review_table_heading_nr'] = "Your Review #";
+$lang['en']['grading']['review_table_heading_review_feedback'] = "Feedback on the review from the authors of the document";
+$lang['en']['grading']['review_table_heading_teacher_grading'] = "Teacher grading of Review";
+$lang['en']['grading']['review_table_your_review'] = "Your review";
+$lang['en']['grading']['review_table_no_feedback'] = "The authors of the document have not yet given feedback on this review";
+$lang['en']['grading']['review_table_review_not_complete'] = "The review is not complete, you should finish it before it can get feedback";
+$lang['en']['grading']['review_table_reviewer_score'] = "Your reviewer score(note that the final score may change after teacher has reviewed)";
 
 
 
