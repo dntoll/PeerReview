@@ -36,7 +36,7 @@ class TestPlan {
 
 				$filePathLocal = UPLOAD_PATH ."/TestPlan/" . $this->getName();
 				//$fileContent = readfile($filePathLocal);
-				$fw = "/data/2dv610/TestPlan/" . $this->getName();
+				$fw = "/course/TestCourse/data/TestPlan/" . $this->getName();
 				if (file_exists($filePathLocal)) {
 					return $fw;
 				}

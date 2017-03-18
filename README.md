@@ -28,6 +28,8 @@ http://localhost:8089/index.php?userID=12724401e9a2e2bd7142972906ae6643
 Studentaccount "user1" with its personal link
 http://localhost:8089/index.php?userID=b5cc34abc6e343f267b3cd934d2aa622
 
+Studentaccount "user2" with its personal link
+http://localhost:8089/index.php?userID=e06dd0bbd2865748d7ec12adc194cc39
 
 ##TODO
 
@@ -39,8 +41,6 @@ http://localhost:8089/index.php?userID=b5cc34abc6e343f267b3cd934d2aa622
 
 
 7. Ändra ord från TestPlan till ReviewSource?
-8. Svenska
- * Bundle all text in one course folder.
 
 * Fix model/TestPlan regarding PDF
-* Date and time when Swedish! 
+* Date and time when Swedish!

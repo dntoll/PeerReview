@@ -1,7 +1,7 @@
 <?php
 
 
-require_once("course/2dv610/Settings.inc");
+require_once("course/TestCourse/Settings.inc");
 
 require_once("Settings.php");
 require_once("src/controller/MasterController.php");

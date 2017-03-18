@@ -36,7 +36,7 @@ define("END_OF_REVIEW_PHASE", mktime(0,0,0,$month, $day, $year));
 */
 define("TEACHERS", array("admin1", "admin2") );
 
-define("STUDENT_FILE", "/vagrant/course/2dv610/students.inc");
-define("UPLOAD_PATH", "/vagrant/data/2dv610");
-define("COURSE_FILES", "/vagrant/course/2dv610/");
+define("STUDENT_FILE", "/vagrant/course/TestCourse/students.inc");
+define("UPLOAD_PATH", "/vagrant/course/TestCourse/data");
+define("COURSE_FILES", "/vagrant/course/TestCourse/");
 define("INFORMATION_TEXT","information_text/");

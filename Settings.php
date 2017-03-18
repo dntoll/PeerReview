@@ -20,11 +20,11 @@ class Settings {
 		$this->feedbackStarts = END_OF_REVIEW_PHASE;
 	}
 
-	public function getDeadlineTimeString() : string {
+	public function getDeadlineTimeString(): string {
 		return date("F j, Y, g:i a", $this->uploadDeadline);
 	}
 
-	public function getFeedbackDeadlineTimeString() : string {
+	public function getFeedbackDeadlineTimeString(): string {
 		return date("F j, Y, g:i a", $this->feedbackStarts);
 	}
 
