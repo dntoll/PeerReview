@@ -12,10 +12,12 @@ class Grading {
 
 
 	public function __construct(int $value = -1) {
+		include("./language.php");
+
 		require_once(COURSE_FILES . INFORMATION_TEXT . "gradingInterpretableValue.inc");
 		$this->value = $value;
 		if ($this->value < -1 || $this->value > 4)
-			throw new \Exception("Not a valid Grading");
+			throw new \Exception($lang[LANGUAGE]['exceptions']['not_valid_grading']);
 	}
 
 	public function isFinished() : bool {

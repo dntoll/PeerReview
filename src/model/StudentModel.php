@@ -72,7 +72,7 @@ class StudentModel {
 
 	public function doSaveTestPlan(UploadedFile $file, UniqueID $student) {
 		$this->studentDAL->saveUserTestPlan($file, $student);
-		$this->testPlanDAL->doSaveTestPlan($file, $student);	
+		$this->testPlanDAL->doSaveTestPlan($file, $student);
 	}
 
 	/*public function doSaveReview(UploadedFile $file, UniqueID $student, TestPlanReview $item) {
@@ -100,11 +100,11 @@ class StudentModel {
 		if ($this->studentDAL->hasPreviouslyUploadedTestPlan($student) === FALSE ) {
 			return false;	//not uploaded
 		}
-		
+
 
 		if ($this->settings->isTimeToReview() === FALSE ) { //We have past the time to submit
 			return false;
-		}	
+		}
 		return true;
 	}
 
@@ -125,7 +125,7 @@ class StudentModel {
 		$r->setTeachersComment($teachersReview);
 
 		$this->saveReview($r, $r->getIndex());
-		
+
 	}
 
 	public function saveTeacherFeedback(ReviewFeedback $f, ReviewFactor $teachersReview, UniqueID $studentFeedbacker) {
@@ -137,7 +137,7 @@ class StudentModel {
 	public function newReview(Uniqueid $uid) : int {
 
 		$index = $this->getReviewed($uid)->getCount();
-		
+
 		$ri = $this->getNewTestPlanReview($uid);
 
 		//since this is randomly generated the review is saved as an empty review
@@ -162,6 +162,7 @@ class StudentModel {
 	}
 
 	public function getReviewIndex(Uniqueid $teacher, TestPlan $tp) {
+		include("./language.php");
 
 		$allTeacherReviews = $this->getReviewed($teacher);
 
@@ -171,14 +172,14 @@ class StudentModel {
 			}
 		}
 
-		throw new \Exception("This user has not reviewed this plan");
+		throw new \Exception($lang[LANGUAGE]['exceptions']['user_has_not_reviewed']);
 	}
 
 	/**
 	 * [teacherNewReview description]
 	 * @param  Uniqueid $teacher [description]
 	 * @param  TestPlan $tp      [description]
-	 * @return returns the index of the review... 
+	 * @return returns the index of the review...
 	 */
 	public function teacherNewReviewAndReturnIndex(Uniqueid $teacher, TestPlan $tp) : int {
 		//echo "Should create review on : " . $tp->getMD5();
@@ -228,7 +229,7 @@ class StudentModel {
 	public function getAllReviews(TestPlan $p) : TestPlanReviewList{
 		return $this->reviewDAL->getAllReviewsForPlan($p, $this->testPlanDAL);
 	}
-	
+
 	public function saveReviewRFeedback(Uniqueid $reviewer, ReviewFeedback $f) {
 		$this->reviewFeedbackDAL->save($reviewer, $f);
 	}
@@ -248,6 +249,6 @@ class StudentModel {
 	public function hasFeedbacked(Uniqueid $reviewer, TestPlanReview $item) : bool {
 		return $this->reviewFeedbackDAL->hasFeedbacked($reviewer, $item);
 	}
-	
-	
+
+
 }

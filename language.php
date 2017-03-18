@@ -23,7 +23,6 @@ $lang['en']['navigation']['score_section_document'] = "Your uploaded document sc
 $lang['en']['navigation']['score_section_review'] = "Your reviewer score";
 $lang['en']['navigation']['teacher'] = "Teacher View";
 
-
 /***  SESSION  ***/
 $lang['en']['session']['no_user_found'] = "No user found";
 $lang['en']['session']['error'] = "This is an error!";
@@ -86,7 +85,6 @@ $lang['en']['feedback']['complete'] = "Complete";
 $lang['en']['feedback']['not_complete'] = "Not complete";
 $lang['en']['feedback']['not_given_feedback'] = "You have not given feedback on this review";
 $lang['en']['feedback']['list_of_reviews'] = "List of reviews";
-$lang['en']['feedback'][''] = "";
 
 /*** GRADING ***/
 $lang['en']['grading']['must_upload'] = "You must upload a document, do reviews and receive feedback to check the grading";
@@ -124,10 +122,34 @@ $lang['en']['upload']['upload_deadline_instructions'] = "After the deadline only
 $lang['en']['upload']['upload_form_instructions'] = "Select document to upload:";
 $lang['en']['upload']['upload_form_input'] = "Upload Document";
 
+/*** DOCUMENT ***/
+$lang['en']['document']['no_md_file'] = "No .md file uploaded yet";
+$lang['en']['document']['no_pdf_file'] = "No .pdf file uploaded yet";
+$lang['en']['document']['saved_file'] = "Saved file";
+
+
+
 
 /*** PDF EXTRA ***/
 $lang['en']['pdf']['pdf_not_supported'] = "This browser does not support PDFs. Please download the PDF to view it:";
 $lang['en']['pdf']['pdf_anchor_text'] = "Download PDF";
+
+/*** EXCEPTIONS ***/
+$lang['en']['exceptions']['missing_param'] = "Missing param";
+$lang['en']['exceptions']['file_no_content'] = "The file hade no content";
+$lang['en']['exceptions']['upload_failed'] = "The upload failed";
+$lang['en']['exceptions']['md_wrong_type_file'] = "The wrong type of file, only text files that ends with [\".md\"] allowed";
+$lang['en']['exceptions']['pdf_wrong_type_file'] = "The wrong type of file, only text files that ends with [\".pdf\"] allowed";
+$lang['en']['exceptions']['corrupt_settings'] = "Corrupt Settings file. You should not be here... Contact your teacher";
+$lang['en']['exceptions']['unable_to_move_file'] = "Unable to move file";
+$lang['en']['exceptions']['uid_not_valid'] = "Not a valid unique ID";
+$lang['en']['exceptions']['find_document_fail'] = "Failed to find document";
+$lang['en']['exceptions']['find_document_fail_no_left'] = "Failed to find a random document, none left";
+$lang['en']['exceptions']['user_has_not_reviewed'] = "This user has not reviewed this plan";
+$lang['en']['exceptions']['not_valid_grading'] = "Not a valid Grading";
+$lang['en']['exceptions']['should_never_get_here'] = "";
+$lang['en']['exceptions'][''] = "";
+
 
 
 /***********

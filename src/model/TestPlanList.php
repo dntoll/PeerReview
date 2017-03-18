@@ -24,13 +24,14 @@ class TestPlanList implements \IteratorAggregate {
 	public function get() : array {
 		return $this->plans;
 	}
-	
+
 
 	public function getRandom() : TestPlan {
+		include("./language.php");
 		$num = count($this->plans);
 
 		if ($num == 0) {
-			throw new \Exception("Failed to find a random testplan, none left");
+			throw new \Exception($lang[LANGUAGE]['exceptions']['find_document_fail_no_left']);
 		}
 		$index = rand() % $num;
 
@@ -41,7 +42,7 @@ class TestPlanList implements \IteratorAggregate {
 			}
 		}
 
-		throw new \Exception("Failed to find TestPlan");
+		throw new \Exception($lang[LANGUAGE]['exceptions']['find_document_fail']);
 	}
 
 	public function getIterator() {

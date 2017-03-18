@@ -16,13 +16,13 @@ class ReviewDAL {
 	}
 
 	private function getReviewFolder() {
-		
+
 		return $this->settings->getUploadPath() . DIRECTORY_SEPARATOR . "Review";
 	}
 
 
 	public function saveReview(TestPlanReview $item, int $index) {
-		
+
 		$itemText = serialize($item);
 
 		file_put_contents($this->getReviewFolder() . DIRECTORY_SEPARATOR . $item->getReviewer()->getName() . "<>" . $item->getTestPlan()->getMD5() . "<>" . $index, $itemText );
@@ -63,7 +63,7 @@ class ReviewDAL {
 
 				if ($parts[1] === $plan->getMD5()) {
 					$review = unserialize(file_get_contents($this->getReviewFolder() . DIRECTORY_SEPARATOR . $fileOrFolder));
-					
+
 					//$ri = $review;//new TestPlanReview($testPlan, $uid, $review);
 					$review->setIndex($parts[2]);
 					$ret->add($review, $index);
@@ -88,7 +88,7 @@ class ReviewDAL {
 		return $ret;
 	}
 
-	
+
 
 	public function getNumReviews(TestPlan $plan) : int{
 		$ret = 0;

@@ -50,8 +50,10 @@ class StudentDAL {
 	}
 
 	private function getTestPlanMD5(UniqueID $student) : string {
+		include("./language.php");
+
 		if ($this->hasPreviouslyUploadedTestPlan($student) == FALSE && $this->settings->isTeacher($student) == false) {
-			throw new \Exception("should never go to this point");
+			throw new \Exception($lang[LANGUAGE]['exceptions']['should_never_get_here']);
 		}
 
 		return file_get_contents($this->getFolder() .  DIRECTORY_SEPARATOR . $student->getName());

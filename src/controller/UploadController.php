@@ -22,18 +22,19 @@ class UploadController {
 	}
 
 	public function doControl(\model\UniqueID $uid, \view\LayoutView $lv) : \view\LayoutView{
-		
+		include("./language.php");
+
 		try {
 
-			if ($this->m->studentShouldUpload($uid ) ) { 
+			if ($this->m->studentShouldUpload($uid ) ) {
 
 				if ($this->uv->studentTriesToUpload()) {
 					$this->m->doSaveTestPlan($this->uv->getUploadedFile(), $uid);
-					$lv->addInformation("Saved file");
+					$lv->addInformation($lang[LANGUAGE]['document']['saved_file']);
 				}
 			}
 
-			if ($this->m->studentShouldUpload($uid ) ) { 
+			if ($this->m->studentShouldUpload($uid ) ) {
 				if ($this->m->hasPreviouslyUploadedTestPlan($uid)) {
 					$upload = $this->m->getTestPlanFromUser($uid);
 
@@ -50,12 +51,12 @@ class UploadController {
 
 				$lv = $this->uv->showUploadIsDoneNotice($lv);
 				$lv = $this->uv->showTestPlan($upload, $lv);
-				
+
 			}
 
-			
 
-			
+
+
 		} catch (\model\NotAFileException $e) {
 			$lv = $this->uv->showNotAFileError($e, $lv);
 			$lv = $this->uv->showUpload($lv);

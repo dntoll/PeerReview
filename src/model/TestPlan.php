@@ -17,6 +17,7 @@ class TestPlan {
 	}
 
 	public function getContent() :string {
+		include("./language.php");
 
 		$filePathLocal = UPLOAD_PATH . "/TestPlan/" . $this->getName();
 		$fileContent = file_get_contents($filePathLocal);
@@ -28,7 +29,7 @@ class TestPlan {
 			return $fileContent;
 		}
 		else
-			return "No .md file uploaded yet ";
+			return $lang[LANGUAGE]['document']['no_md_file'];
 	}
 
 	public function getPdf() : string {
@@ -40,7 +41,7 @@ class TestPlan {
 					return $fw;
 				}
 				else
-					return "No .pdf file uploaded yet ";
+					return $lang[LANGUAGE]['document']['no_pdf_file'];
 				}
 
 	public function getMD5() {
