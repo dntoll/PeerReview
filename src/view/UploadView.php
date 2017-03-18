@@ -21,8 +21,8 @@ class UploadView {
 	}
 
 	public function showHeader(\view\LayoutView $lv) : \view\LayoutView {
-
-		$lv->setHeaderText("Upload your Document", "Write your document in Markdown format and upload the file below.");
+		include("./language.php");
+		$lv->setHeaderText($lang[LANGUAGE]['headings']['upload_top_heading'], $lang[LANGUAGE]['headings']['upload_sub_heading']);
 
 		return $lv;
 	}
@@ -35,27 +35,28 @@ class UploadView {
 	}
 
 	public function showUploadIsDoneNotice(\view\LayoutView $lv) : \view\LayoutView {
+		include("./language.php");
 		$deadlineTimeString = $this->settings->getDeadlineTimeString();
 
-		$lv->addInformation("You cannot change the uploaded document at this point. The deadline for uploading documents has passed [$deadlineTimeString]");
+		$lv->addInformation($lang[LANGUAGE]['upload']['upload_phase_done']. " [$deadlineTimeString]");
 
 		return $lv;
 	}
 
 	public function showTestPlan(\model\TestPlan $f, \view\LayoutView $lv) : \view\LayoutView{
-
-		$parsed = "<div class'testPlan'>EMPTY</div>";
+		include("./language.php");
+		$parsed = "<div class'testPlan'>".$lang[LANGUAGE]['upload']['upload_empty']."</div>";
 		switch (REVIEW_SOURCE_TYPE) {
     case 'md':
 			$parsed = MarkdownExtra::defaultTransform($f->getContent());
-			$lv->addSection("The uploaded document","<h2>The uploaded document</h2>
+			$lv->addSection($lang[LANGUAGE]['upload']['uploaded_document'],"<h2>".$lang[LANGUAGE]['upload']['uploaded_document']."</h2>
 					<div class='testPlan'>$parsed</div>") ;
         break;
     case 'pdf':
 			$pdf = $f->getPdf();
-			$lv->addSection("The uploaded document","<h2>The uploaded document</h2>
+			$lv->addSection($lang[LANGUAGE]['upload']['uploaded_document'],"<h2>".$lang[LANGUAGE]['upload']['uploaded_document']."</h2>
 			<object data='$pdf' type='application/pdf' width='100%' height='842px'>
-   		<p>This browser does not support PDFs. Please download the PDF to view it: <a href='$pdf'>Download PDF</a>.</p>
+   		<p>".$lang[LANGUAGE]['upload']['upload_pdf_not_supported']." <a href='$pdf'>".$lang[LANGUAGE]['upload']['upload_pdf_anchor_text']."</a>.</p>
 	 		</object>
 			");
         break;
@@ -66,43 +67,34 @@ class UploadView {
 	}
 
 	public function showUpload(\view\LayoutView $lv) : \view\LayoutView {
+		include("./language.php");
 		$deadlineTimeString = $this->settings->getDeadlineTimeString();
 
 
 		if ($this->settings->isTimeToReview()) {
-			$lv->addWarning("<strong>WARNING</strong> Since the time for uploading has ended, only a single upload will be allowed! Make sure you double check that you upload a correct file.");
+			$lv->addWarning("<strong>".$lang[LANGUAGE]['upload']['warning']."</strong> ".$lang[LANGUAGE]['upload']['one_more_upload_allowed']);
 		}
 
 
-		$lv->addSection("Upload instructions","
+		$lv->addSection($lang[LANGUAGE]['upload']['upload_heading_instructions'],"
 	<div class=\"spotlight\">
 		<div class=\"content\">
 			<header class=\"major\">
-			<h2>Upload instructions</h2>
+			<h2>".$lang[LANGUAGE]['upload']['upload_heading_instructions']."</h2>
 			</header>
-			<p>The uploaded file can be changed up until $deadlineTimeString. After that only a one time upload can happen (no changes of uploaded file) and no garanties are made that you are going to get reviews.</p>
+			<p>".$lang[LANGUAGE]['upload']['upload_deadline_instructions']." $deadlineTimeString.</p>
 		</div>
-
 	</div>
+	".file_get_contents(COURSE_FILES . INFORMATION_TEXT . "/uploadInstructions.inc"));
 
-			<ul>
-			<li>The strategy, test-plan, test-cases and test-report should be written as a single MarkDown formatted (.md) file</li>
-			<li>The document should be anonymous, no names or traces of who you are should be in the document. Instead use role-names like “test-lead”, “scrum-master” or “product-owner”. The document and other text are not anonymous to course management.</li>
-			<li>All students in the group should upload the exact same document, please make sure that if you update the document and resubmit that all students update it.</li>
-			<li>The document or parts of it may not be shared between groups.</li>
-			<li>Read the review task in order to find out more about how to write a successful document.</li>
-			<li>If you are more than one student in your group every student must upload the exact same file.</li>
-			</ul>
-		");
-
-		$lv->addSection("Upload form", "
+		$lv->addSection($lang[LANGUAGE]['upload']['upload_heading_form'], "
 				<header class=\"major\">
-					<h2>Upload form</h2>
+					<h2>".$lang[LANGUAGE]['upload']['upload_heading_form']."</h2>
 				</header>
 				<form  method='post' enctype='multipart/form-data'>
-    				Select .md Document to upload:
+    				".$lang[LANGUAGE]['upload']['upload_form_instructions']."
     				<input type='file' name='fileToUpload' id='fileToUpload' ><br/>
-    				<input type='submit' value='Upload TestPlan (.md)' name='submit'>
+    				<input type='submit' value='".$lang[LANGUAGE]['upload']['upload_form_input']."  (.".REVIEW_SOURCE_TYPE.")' name='submit'>
 				</form>
 				");
 

@@ -7,6 +7,8 @@ ENGLISH
 /*** HEADINGS ***/
 $lang['en']['headings']['score_top_heading'] = "Check score";
 $lang['en']['headings']['score_sub_heading'] = "Check how your document was scored by other students and also how your reviews was scored.";
+$lang['en']['headings']['upload_top_heading'] = "Upload document";
+$lang['en']['headings']['upload_sub_heading'] = "Write your document in Markdown format and upload the file below.";
 
 /*** NAVIGATION ***/
 $lang['en']['navigation']['upload'] = "Upload your document";
@@ -58,7 +60,19 @@ $lang['en']['grading']['review_table_no_feedback'] = "The authors of the documen
 $lang['en']['grading']['review_table_review_not_complete'] = "The review is not complete, you should finish it before it can get feedback";
 $lang['en']['grading']['review_table_reviewer_score'] = "Your reviewer score(note that the final score may change after teacher has reviewed)";
 
-
+/*** UPLOAD ***/
+$lang['en']['upload']['upload_phase_done'] = "You cannot change the uploaded document at this point. The deadline for uploading documents has passed";
+$lang['en']['upload']['upload_empty'] = "EMPTY";
+$lang['en']['upload']['uploaded_document'] = "The uploaded document";
+$lang['en']['upload']['upload_pdf_not_supported'] = "This browser does not support PDFs. Please download the PDF to view it:";
+$lang['en']['upload']['upload_pdf_anchor_text'] = "Download PDF";
+$lang['en']['upload']['warning'] = "WARNING";
+$lang['en']['upload']['one_more_upload_allowed'] = "Since the time for uploading has ended, only a single upload will be allowed! Make sure you double check that you upload a correct file.";
+$lang['en']['upload']['upload_heading_instructions'] = "Upload instructions";
+$lang['en']['upload']['upload_heading_form'] = "Upload form";
+$lang['en']['upload']['upload_deadline_instructions'] = "After the deadline only a one time upload can happen (no changes of uploaded file) and no garanties are made that you are going to get reviews. The uploaded file can be changed up until";
+$lang['en']['upload']['upload_form_instructions'] = "Select document to upload:";
+$lang['en']['upload']['upload_form_input'] = "Upload Document";
 
 
 /***********
