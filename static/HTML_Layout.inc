@@ -3,7 +3,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    
+
     <title>Peer-Review</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <!--[if lte IE 8]><script src="static/stellar/assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -19,17 +19,17 @@
   </head>
   <body >
   <div id="wrapper">
-<?php 
-  echo $content;    
+<?php
+  echo $content;
     ?>
-  
+
 
 
   <footer id="footer">
             <section>
               <h2>Peer review system</h2>
               <p>Developed in 2016 by Daniel Toll in order to allow students to share and review documents anonymously.</p>
-              
+
             </section>
             <section>
               <h2>Contact</h2>
@@ -40,7 +40,7 @@
                 <dd><a href="https://coursepress.slack.com/messages/2dv610/">https://coursepress.slack.com/messages/2dv610/</a></dd>
                 
               </dl>
-              
+
             </section>
             <p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
           </footer>

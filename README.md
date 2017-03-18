@@ -42,4 +42,5 @@ http://localhost:8089/index.php?userID=b5cc34abc6e343f267b3cd934d2aa622
 8. Svenska
  * Bundle all text in one course folder.
 
-* Fix model/TestPlan regarding PDF 
+* Fix model/TestPlan regarding PDF
+* Date and time when Swedish! 

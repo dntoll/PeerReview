@@ -84,7 +84,7 @@ class ReviewView {
 		$ret ="<div class=\"spotlight\">
 		<div class=\"content\">
 			<header class=\"major\">
-			<h2>".$lang[LANGUAGE]['review']['show_review_form_heading']."</h2>
+			<h2>".$lang[LANGUAGE]['navigation']['review_list_of_documents']."</h2>
 			</header>
 			<p>".$lang[LANGUAGE]['review']['show_review_form_instructions']."</p>
 
@@ -136,13 +136,13 @@ class ReviewView {
 		}
 		$ret .= "</ul></div>";
 
-		$lv->addSection($lang[LANGUAGE]['review']['page_heading_1'], $ret);
+		$lv->addSection($lang[LANGUAGE]['navigation']['review_list_of_documents'], $ret);
 
 
 		if ($studentReviewItems->_isset($index)) {
 				$ri = $studentReviewItems->get($index);
 
-				$lv->addSection($lang[LANGUAGE]['review']['document_to_review']." $index", $this->getTestPlanHTML($ri, $index));
+				$lv->addSection($lang[LANGUAGE]['navigation']['review_document_to_review']." $index", $this->getTestPlanHTML($ri, $index));
 
 				if ($this->m->reviewHasFeedback($ri)) { //We have past the time to submit
 					$ret = "<header class=\"major\"><h2>".$lang[LANGUAGE]['review']['your_saved_review']."</h2></header>";
@@ -150,12 +150,12 @@ class ReviewView {
 					$ret .= "<div class='Warning'>".$lang[LANGUAGE]['review']['cannot_change_feedbacked_review']."</div>";
 
 
-					$lv->addSection($lang[LANGUAGE]['review']['page_heading_2'], $ret);
+					$lv->addSection($lang[LANGUAGE]['navigtaion']['review_saved_review'], $ret);
 					$lv = $this->showFeedbackOnThisReview($ri, $user, $lv);
 				} else {
-					$ret = "<h2>".$lang[LANGUAGE]['review']['page_heading_3']."</h2>";
+					$ret = "<h2>".$lang[LANGUAGE]['navigation']['review_form']."</h2>";
 					$ret .= $this->getReviewForm($ri, $user, $index);
-					$lv->addSection($lang[LANGUAGE]['review']['page_heading_3'], $ret);
+					$lv->addSection($lang[LANGUAGE]['navigation']['review_form'], $ret);
 				}
 		}
 		return $lv;
@@ -164,7 +164,7 @@ class ReviewView {
 	private function getTestPlanHTML(\model\TestPlanReview $ri, int $index) {
 		include("./language.php");
 
-		$ret = "<header class=\"major\"><h2>".$lang[LANGUAGE]['review']['document_to_review']." # $index</h2></header>";
+		$ret = "<header class=\"major\"><h2>".$lang[LANGUAGE]['navigation']['review_document_to_review']." # $index</h2></header>";
 		$tp = $ri->getTestPlan();
 
 		switch (REVIEW_SOURCE_TYPE) {
@@ -214,7 +214,7 @@ class ReviewView {
 
 	private function showFeedbackOnThisReview(\model\TestPlanReview $ri, \model\UniqueID $reviewer, \view\LayoutView $lv) : \view\LayoutView {
 		include("./language.php");
-		$ret = "<header class=\"major\"><h2>".$lang[LANGUAGE]['review']['page_heading_4']."</h2></header>";
+		$ret = "<header class=\"major\"><h2>".$lang[LANGUAGE]['navigation']['review_feedback']."</h2></header>";
 		$feedbacks = $this->m->getReviewFeedbackList($ri);
 
 		foreach ($feedbacks as $key => $f) {
@@ -223,7 +223,7 @@ class ReviewView {
 			$ret .= $rfv->getFeedbackHTML($f, $lang[LANGUAGE]['review']['your_review_from']." # $key");
 
 		}
-		$lv->addSection($lang[LANGUAGE]['review']['page_heading_4'], $ret);
+		$lv->addSection($lang[LANGUAGE]['navigation']['review_feedback'], $ret);
 
 		return $lv;
 

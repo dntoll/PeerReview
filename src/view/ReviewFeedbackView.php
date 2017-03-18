@@ -50,7 +50,7 @@ class ReviewFeedbackView {
 		if ($this->allReviews->_isset($index)) {
 			return $this->allReviews->get($index);
 		}
-		throw new \Exception($lang[LANGUAGE]['feedback']['exception_no_review_exists']);
+		throw new \Exception($lang[LANGUAGE]['exceptions']['exception_no_review_exists']);
 	}
 
 
@@ -83,7 +83,7 @@ class ReviewFeedbackView {
 			}
 			$ret = "<header class=\"major\"><h2>".$lang[LANGUAGE]['review']['review']." # $index ".$lang[LANGUAGE]['feedback']['on_your_document']."</h2></header>";
 			$ret .= $rv->showReview($studentReview, " # $index");
-			$lv->addSection($lang[LANGUAGE]['feedback']['read_review']." $index", $ret);
+			$lv->addSection($lang[LANGUAGE]['navigation']['feedback_read_review']." $index", $ret);
 
 			$teacherHasSaidHisPiece = false;
 			if ($this->m->hasFeedbacked($this->feedbacker, $studentReview)) {
@@ -96,9 +96,9 @@ class ReviewFeedbackView {
 			}
 
 			if ($teacherHasSaidHisPiece == false)
-				$lv->addSection($lang[LANGUAGE]['feedback']['give_feedback_on']." $index", $this->showReviewFeedbackForm($studentReview));
+				$lv->addSection($lang[LANGUAGE]['navigation']['feedback_give_feedback_on']." $index", $this->showReviewFeedbackForm($studentReview));
 			else
-				$lv->addSection($lang[LANGUAGE]['feedback']['your_feedback_on']." $index", $this->showReviewFeedbackAndTeacherNotes($studentReview));
+				$lv->addSection($lang[LANGUAGE]['navigation']['feedback_your_feedback_on']." $index", $this->showReviewFeedbackAndTeacherNotes($studentReview));
 
 
 		} else {
@@ -149,7 +149,7 @@ class ReviewFeedbackView {
 			return $this->getFeedbackHTML($feedback, $lang[LANGUAGE]['feedback']['your_feedback_to_reviewer']);
 		}
 
-		throw new \Exception($lang[LANGUAGE]['feedback']['exception_only_on_teacher_feedback']);
+		throw new \Exception($lang[LANGUAGE]['exceptions']['exception_only_on_teacher_feedback']);
 	}
 
 	private function showReviewFeedbackForm(\model\TestPlanReview $item) : string {
@@ -172,10 +172,10 @@ class ReviewFeedbackView {
 
 	private function showReviewSelection(\view\LayoutView $lv) : \view\LayoutView {
 		include("./language.php");
-		$ret = "<header class=\"major\"><h2>".$lang[LANGUAGE]['feedback']['heading_introduction']."</h2></header>";
+		$ret = "<header class=\"major\"><h2>".$lang[LANGUAGE]['navigation']['feedback_introduction'] ."</h2></header>";
 		$ret .= "<p>".$lang[LANGUAGE]['feedback']['information_introduction']."</p>";
 
-		$lv->addSection($lang[LANGUAGE]['feedback']['heading_introduction'], $ret);
+		$lv->addSection($lang[LANGUAGE]['navigation']['feedback_introduction'] , $ret);
 		$ret = "";
 		$index = $this->getReviewIndex();
 		$uid = $this->feedbacker->getName();
@@ -206,7 +206,7 @@ class ReviewFeedbackView {
 
 		}
 		$ret .= "</ul></div>";
-		$lv->addSection($lang[LANGUAGE]['feedback']['list_of_reviews'], $ret);
+		$lv->addSection($lang[LANGUAGE]['navigation']['feedback_list_of_reviews'], $ret);
 
 		return $lv;
 	}

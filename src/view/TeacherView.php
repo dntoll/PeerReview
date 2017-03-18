@@ -135,7 +135,7 @@ private function array_median($array) {
 		$ret .= "<table>
 					<thead>
 						<tr>
-							<th>Test Plan</th>
+							<th>Document</th>
 							<th># Authors</th>
 							<th>Median Score</th>
 							<th>Factor</th>

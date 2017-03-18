@@ -18,7 +18,7 @@ define("REVIEW_SOURCE_TYPE","pdf");
 /****
   Language choise
 ****/
-define("LANGUAGE","en");
+define("LANGUAGE","sv");
 
 
 $day = 28;

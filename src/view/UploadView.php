@@ -49,12 +49,12 @@ class UploadView {
 		switch (REVIEW_SOURCE_TYPE) {
     case 'md':
 			$parsed = MarkdownExtra::defaultTransform($f->getContent());
-			$lv->addSection($lang[LANGUAGE]['upload']['uploaded_document'],"<h2>".$lang[LANGUAGE]['upload']['uploaded_document']."</h2>
+			$lv->addSection($lang[LANGUAGE]['navigation']['upload_uploaded_document'],"<h2>".$lang[LANGUAGE]['navigation']['upload_uploaded_document']."</h2>
 					<div class='testPlan'>$parsed</div>") ;
         break;
     case 'pdf':
 			$pdf = $f->getPdf();
-			$lv->addSection($lang[LANGUAGE]['upload']['uploaded_document'],"<h2>".$lang[LANGUAGE]['upload']['uploaded_document']."</h2>
+			$lv->addSection($lang[LANGUAGE]['navigation']['upload_uploaded_document'],"<h2>".$lang[LANGUAGE]['navigation']['upload_uploaded_document']."</h2>
 			<object data='$pdf' type='application/pdf' width='100%' height='842px'>
    		<p>".$lang[LANGUAGE]['pdf']['pdf_not_supported']." <a href='$pdf'>".$lang[LANGUAGE]['pdf']['pdf_anchor_text']."</a>.</p>
 	 		</object>

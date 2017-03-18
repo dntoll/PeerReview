@@ -93,7 +93,7 @@ class StudentView {
 
 	public function showNoAvailableTestPlans(\view\LayoutView $lv) : \view\LayoutView {
 		include("./language.php");
-		$lv->addInformation($lang[LANGUAGE]['review']['no_available_review_document']);
+		$lv->addInformation($lang[LANGUAGE]['review']['nothing_to_review']);
 		return $lv;
 	}
 

@@ -13,8 +13,6 @@ class Grading {
 
 	public function __construct(int $value = -1) {
 		include("./language.php");
-
-		require_once(COURSE_FILES . INFORMATION_TEXT . "gradingInterpretableValue.inc");
 		$this->value = $value;
 		if ($this->value < -1 || $this->value > 4)
 			throw new \Exception($lang[LANGUAGE]['exceptions']['not_valid_grading']);
@@ -30,6 +28,8 @@ class Grading {
 
 
 	public function getInterpretableValue() : string {
+		require_once(COURSE_FILES . INFORMATION_TEXT . "gradingInterpretableValue.inc");
+
 		switch($this->value) {
 			case self::NOT_GRADED : return TEXT_NOT_GRADED;
 			case self::NOT_AN_ATTEMPT : return  TEXT_NOT_AN_ATTEMPT;
