@@ -11,6 +11,8 @@ $lang['en']['headings']['upload_top_heading'] = "Upload document";
 $lang['en']['headings']['upload_sub_heading'] = "Write your document in Markdown format and upload the file below.";
 $lang['en']['headings']['review_top_heading'] = "Review documents";
 $lang['en']['headings']['review_sub_heading'] = "You should review and grade other students documents. The more the better.";
+$lang['en']['headings']['feedback_top_heading'] = "View Reviews and Give Feedback on Reviews";
+$lang['en']['headings']['feedback_sub_heading'] = "During this phase you are to view the reviews your document has generated.";
 
 /*** NAVIGATION ***/
 $lang['en']['navigation']['upload'] = "Upload your document";
@@ -28,12 +30,12 @@ $lang['en']['session']['error'] = "This is an error!";
 $lang['en']['session']['no_active_session_info'] = "<h2>No active session.</h2> <p>This is probably due to that you have returned to the site when the session has ended. <a href=\"" . COURSE_PAGE_LINK . "\">Use the link provided by your course administrator on your course web space</a> to get access to PeerReview. If you have and still get this message, please contact your course administrator.</p>";
 
 /*** REVIEW ***/
+$lang['en']['review']['review'] = "Review";
 $lang['en']['review']['nothing_to_review'] = "There are no documents for you to review at this point, you have to wait until more are posted";
 $lang['en']['review']['need_to_upload_first'] = "You need to upload a document before you can review other students documents";
 $lang['en']['review']['not_time_for_reviews'] = "You need to wait until the deadline for uploading documents has expired. The review phase starts:";
 $lang['en']['review']['no_available_review_document'] = "There is currently no available document to a review. You have to wait until more documents are submitted.";
 $lang['en']['review']['no_reviews_yet'] = "You have not yet recieved any reviews on your document. You need to wait until reviews on your document are submitted before you can give feedback on those.";
-
 
 $lang['en']['review']['clarity'] = "Clarity";
 $lang['en']['review']['completeness'] = "Completeness";
@@ -59,13 +61,32 @@ $lang['en']['review']['complete_the_review'] = "You need to complete all fields 
 $lang['en']['review']['input_save_review'] = "Save Review";
 $lang['en']['review']['page_heading_4'] = "Feedback on your review";
 $lang['en']['review']['your_review_from'] = "your review from author";
-$lang['en']['review'][''] = "";
-$lang['en']['review'][''] = "";
-
+$lang['en']['review']['comment_on'] = "Comment on";
 
 /*** FEEDBACK ***/
 $lang['en']['feedback']['not_time_for_feedback'] = "This is not the time for giving feedback to reviews, first you must make reviews. The feedback phase starts:";
 $lang['en']['feedback']['should_do_feedback_now'] = "It is time to look at your feedback";
+$lang['en']['feedback']['exception_no_review_exists'] = "No review exists";
+$lang['en']['feedback']['warning_need_to_submit_feedback'] = "Warning: You need to submit feedback for this review.";
+$lang['en']['feedback']['on_your_document'] = "on your document";
+$lang['en']['feedback']['read_review'] = "Read Review";
+$lang['en']['feedback']['give_feedback_on'] = "Give Feedback on";
+$lang['en']['feedback']['your_feedback_on'] = "Your Feedback on";
+$lang['en']['feedback']['reviewer_has_not_completed'] = "The reviewer has not completed the review.";
+$lang['en']['feedback']['warning_feedback_not_complete'] = "Warning: This Feedback is not complete.";
+$lang['en']['feedback']['heading_give_feedback'] = "Give feedback on the review:";
+$lang['en']['feedback']['information_feedback'] = "You should respond to the review you are given.";
+$lang['en']['feedback']['input_save_feedback'] = "Save review feedback";
+$lang['en']['feedback']['your_feedback_to_reviewer'] = "Your feedback to this reviewer";
+$lang['en']['feedback']['exception_only_on_teacher_feedback'] = "Should only happen when we have feedback from teacher";
+$lang['en']['feedback']['heading_introduction'] = "Introduction";
+$lang['en']['feedback']['information_introduction'] = "During this phase you are to view the reviews your document has generated. You should also grade these reviews and provide a comment on the reasoning behind your grading. Note that you should not provide personal information in these comments and you are anonymous for the student that reviewed your document. However, you are not anonymous to the teacher.";
+$lang['en']['feedback']['your_reviews'] = "Your Reviews";
+$lang['en']['feedback']['complete'] = "Complete";
+$lang['en']['feedback']['not_complete'] = "Not complete";
+$lang['en']['feedback']['not_given_feedback'] = "You have not given feedback on this review";
+$lang['en']['feedback']['list_of_reviews'] = "List of reviews";
+$lang['en']['feedback'][''] = "";
 
 /*** GRADING ***/
 $lang['en']['grading']['must_upload'] = "You must upload a document, do reviews and receive feedback to check the grading";

@@ -27,8 +27,8 @@ class ReviewFactorView {
 
 		$oldFeedBackText = $feedback->getText();
 		$grading = $feedback->getGrading();
-		
-		
+
+
 		$gradingViewFormHTML = $this->gv->getForm($grading, $this->reviewFactorGradeTitles);
 
 		return "
@@ -38,10 +38,11 @@ class ReviewFactorView {
 	}
 
 	public function getHTMLContent(\model\ReviewFactor $feedback, string $title) {
+		include("./language.php");
 		//$Parsedown = new \Parsedown();
-	
+
 		//$parsed = $Parsedown->text($feedback->getText());
-		//TODO: Make sure html does not slip through, this is open right now. 
+		//TODO: Make sure html does not slip through, this is open right now.
 		$decoded = html_entity_decode($feedback->getText());
 		//$decoded = htmlspecialchars($decoded, ENT_HTML5 | ENT_NOQUOTES | ENT_SUBSTITUTE);
 
@@ -50,7 +51,7 @@ class ReviewFactorView {
 
 		$gv = new \view\GradingView("");
 		$ret = "<div class='Review'>";
-		$ret .= "<h3>Comment on $title</h3>";
+		$ret .= "<h3>".$lang[LANGUAGE]['review']['comment_on']." $title</h3>";
 		$ret .= "<div class='ReviewText'>$parsed</div>";
 		$ret .= "<h3>Grade</h3>";
 		$ret .= "<div>" . $gv->getGradeHTML($feedback->getGrading(), $this->reviewFactorGradeTitles) . "</div>";

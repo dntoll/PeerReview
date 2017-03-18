@@ -43,13 +43,14 @@ class ReviewFeedbackView {
 
 
 	public function getActiveReview() : \model\TestPlanReview {
+		include("./language.php");
 
 		$index = $this->getReviewIndex();
 
 		if ($this->allReviews->_isset($index)) {
 			return $this->allReviews->get($index);
 		}
-		throw new \Exception("No review exists");
+		throw new \Exception($lang[LANGUAGE]['feedback']['exception_no_review_exists']);
 	}
 
 
@@ -66,6 +67,7 @@ class ReviewFeedbackView {
 
 
 	public function viewReview(ReviewView $rv, LayoutView $lv) : LayoutView {
+		include("./language.php");
 
 
 		$lv = $this->showReviewSelection($lv);
@@ -77,11 +79,11 @@ class ReviewFeedbackView {
 
 			if ($this->m->hasFeedbacked($this->feedbacker, $studentReview)) {
 			} else {
-				$lv->addWarning("Warning: You need to submit feedback for this review.");
+				$lv->addWarning($lang[LANGUAGE]['feedback']['warning_need_to_submit_feedback']);
 			}
-			$ret = "<header class=\"major\"><h2>Review # $index on your document</h2></header>";
+			$ret = "<header class=\"major\"><h2>".$lang[LANGUAGE]['review']['review']." # $index ".$lang[LANGUAGE]['feedback']['on_your_document']."</h2></header>";
 			$ret .= $rv->showReview($studentReview, " # $index");
-			$lv->addSection("Read Review $index", $ret);
+			$lv->addSection($lang[LANGUAGE]['feedback']['read_review']." $index", $ret);
 
 			$teacherHasSaidHisPiece = false;
 			if ($this->m->hasFeedbacked($this->feedbacker, $studentReview)) {
@@ -94,13 +96,13 @@ class ReviewFeedbackView {
 			}
 
 			if ($teacherHasSaidHisPiece == false)
-				$lv->addSection("Give Feedback on $index", $this->showReviewFeedbackForm($studentReview));
+				$lv->addSection($lang[LANGUAGE]['feedback']['give_feedback_on']." $index", $this->showReviewFeedbackForm($studentReview));
 			else
-				$lv->addSection("Your Feedback on $index", $this->showReviewFeedbackAndTeacherNotes($studentReview));
+				$lv->addSection($lang[LANGUAGE]['feedback']['your_feedback_on']." $index", $this->showReviewFeedbackAndTeacherNotes($studentReview));
 
 
 		} else {
-			$lv->addInformation("The reviewer has not completed the review.");
+			$lv->addInformation($lang[LANGUAGE]['feedback']['reviewer_has_not_completed']);
 		}
 
 
@@ -112,39 +114,24 @@ class ReviewFeedbackView {
 	}
 
 	private function getForm(\model\ReviewFeedback $feedback) {
+		include("./language.php");
 
 		$formText = $this->feedbackFormView->getFormContent($feedback->getFeedback(), "feedbackform");
 
 
-		$done = $feedback->isFinished() ?  "" : "<div class='Warning'>Warning: This Feedback is not complete.</div>";
+		$done = $feedback->isFinished() ?  "" : "<div class='Warning'>".$lang[LANGUAGE]['feedback']['warning_feedback_not_complete']."</div>";
 
 		return "
-		<header class=\"major\"><h2>Give feedback on the review:</h2></header>
+		<header class=\"major\"><h2>".$lang[LANGUAGE]['feedback']['heading_give_feedback']."</h2></header>
 <div class='FeedbackForm'>
-	<p>You should respond to the review you are given.</p>
-
-	<ul>
-	<li>A good review should be truthful (correct)</li>
-	<li>A good review should helpful give clues to what is good and what is not and suggest changes.</li>
-	<li>A good review should be thorough and complete</li>
-	<li>A good review may still be of a different oppinion than yours.</li>
-	</ul>
-
-A bad grade does not automatically mean that you or the reviewer gets a low grade, it is an indication of that something is not right.
-If you think something is wrong with the review, state your view in the comments. Be polite. You are anonymous to the other student but not to the teaching assistants.
-
-Remember different people have different views and may interpret the same information differently. Learn from this, how could you have written your document in a way that this reviewer would have liked?
-
-	$done
-
-<p>Comment on what you learned from this review also motivate your grading of this review. </p>
-
-<form  method='post' enctype='multipart/form-data' id='feedbackform'>
-
-	$formText
-	<br/>
-	<input type='submit' value='Save review feedback' name='submit'>
-</form>
+	<p>".$lang[LANGUAGE]['feedback']['information_feedback']."</p>
+	".file_get_contents(COURSE_FILES . INFORMATION_TEXT . "/feedbackInformation.inc")."
+	<form  method='post' enctype='multipart/form-data' id='feedbackform'>
+		$done
+		$formText
+		<br/>
+		<input type='submit' value='".$lang[LANGUAGE]['feedback']['input_save_feedback']."' name='submit'>
+	</form>
 
 </div>
 
@@ -155,13 +142,14 @@ Remember different people have different views and may interpret the same inform
 
 
 	private function showReviewFeedbackAndTeacherNotes(\model\TestPlanReview $item) : string {
+		include("./language.php");
 
 		if ($this->m->hasFeedbacked($this->feedbacker, $item)) {
 			$feedback = $this->m->getReviewFeedback($this->feedbacker, $item);
-			return $this->getFeedbackHTML($feedback, "Your feedback to this reviewer");
+			return $this->getFeedbackHTML($feedback, $lang[LANGUAGE]['feedback']['your_feedback_to_reviewer']);
 		}
 
-		throw new \Exception("Should only happen when we have feedback from teacher ");
+		throw new \Exception($lang[LANGUAGE]['feedback']['exception_only_on_teacher_feedback']);
 	}
 
 	private function showReviewFeedbackForm(\model\TestPlanReview $item) : string {
@@ -177,19 +165,21 @@ Remember different people have different views and may interpret the same inform
 	}
 
 	public function showHeader(\view\LayoutView $lv) : \view\LayoutView {
-		$lv->setHeaderText("View Reviews and Give Feedback on Reviews", "During this phase you are to view the reviews your document has generated.");
+		include("./language.php");
+		$lv->setHeaderText($lang[LANGUAGE]['headings']['feedback_top_heading'], $lang[LANGUAGE]['headings']['feedback_sub_heading']);
 		return $lv;
 	}
 
 	private function showReviewSelection(\view\LayoutView $lv) : \view\LayoutView {
-		$ret = "<header class=\"major\"><h2>Introduction</h2></header>";
-		$ret .= "<p>During this phase you are to view the reviews your document has generated. You should also grade these reviews and provide a comment on the reasoning behind your grading. Note that you should not provide personal information in these comments and you are anonymous for the student that reviewed your document. However, you are not anonymous to the teacher.</p>";
+		include("./language.php");
+		$ret = "<header class=\"major\"><h2>".$lang[LANGUAGE]['feedback']['heading_introduction']."</h2></header>";
+		$ret .= "<p>".$lang[LANGUAGE]['feedback']['information_introduction']."</p>";
 
-		$lv->addSection("Introduction", $ret);
+		$lv->addSection($lang[LANGUAGE]['feedback']['heading_introduction'], $ret);
 		$ret = "";
 		$index = $this->getReviewIndex();
 		$uid = $this->feedbacker->getName();
-		$ret .= "<div class='menu'><h2>Your reviews</h2><ul>";
+		$ret .= "<div class='menu'><h2>".$lang[LANGUAGE]['feedback']['your_reviews']."</h2><ul>";
 		$active = $this->getActiveReview();
 		foreach ($this->allReviews as $key => $review) {
 			if ($review->isFinished()) {
@@ -197,17 +187,17 @@ Remember different people have different views and may interpret the same inform
 				if ($this->m->hasFeedbacked($this->feedbacker, $review)) {
 					$feedback = $this->m->getReviewFeedback($this->feedbacker, $review);
 					if ($feedback->isFinished())
-						$status = "(Complete)";
+						$status = "(".$lang[LANGUAGE]['feedback']['complete'].")";
 					else
-						$status = "(not complete!)";
+						$status = "(".$lang[LANGUAGE]['feedback']['not_complete'].")";
 				} else {
-					$status = "(You have not given feedback on this review)";
+					$status = "(".$lang[LANGUAGE]['feedback']['not_given_feedback'].")";
 				}
 
 				if ($index === $key) {
-					$ret .= "<li><a class='menuItemSelected' href='?action=feedback&index=$key#Read+Review+$key'>Review # $key $status</a></li> ";
+					$ret .= "<li><a class='menuItemSelected' href='?action=feedback&index=$key#Read+Review+$key'>".$lang[LANGUAGE]['review']['review']." # $key $status</a></li> ";
 				} else {
-					$ret .= "<li><a class='menuItem' href='?action=feedback&index=$key#Read+Review+$key'>Review # $key $status</a></li> ";
+					$ret .= "<li><a class='menuItem' href='?action=feedback&index=$key#Read+Review+$key'>".$lang[LANGUAGE]['review']['review']." # $key $status</a></li> ";
 				}
 			} else {
 				//$ret .= "<span class='menuItemSelected' >Review # $key (not complete)</span> ";
@@ -216,7 +206,7 @@ Remember different people have different views and may interpret the same inform
 
 		}
 		$ret .= "</ul></div>";
-		$lv->addSection("List of reviews", $ret);
+		$lv->addSection($lang[LANGUAGE]['feedback']['list_of_reviews'], $ret);
 
 		return $lv;
 	}
