@@ -56,7 +56,7 @@ class UploadView {
 			$pdf = $f->getPdf();
 			$lv->addSection($lang[LANGUAGE]['upload']['uploaded_document'],"<h2>".$lang[LANGUAGE]['upload']['uploaded_document']."</h2>
 			<object data='$pdf' type='application/pdf' width='100%' height='842px'>
-   		<p>".$lang[LANGUAGE]['upload']['upload_pdf_not_supported']." <a href='$pdf'>".$lang[LANGUAGE]['upload']['upload_pdf_anchor_text']."</a>.</p>
+   		<p>".$lang[LANGUAGE]['pdf']['pdf_not_supported']." <a href='$pdf'>".$lang[LANGUAGE]['pdf']['pdf_anchor_text']."</a>.</p>
 	 		</object>
 			");
         break;

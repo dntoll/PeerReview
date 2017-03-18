@@ -9,6 +9,8 @@ $lang['en']['headings']['score_top_heading'] = "Check score";
 $lang['en']['headings']['score_sub_heading'] = "Check how your document was scored by other students and also how your reviews was scored.";
 $lang['en']['headings']['upload_top_heading'] = "Upload document";
 $lang['en']['headings']['upload_sub_heading'] = "Write your document in Markdown format and upload the file below.";
+$lang['en']['headings']['review_top_heading'] = "Review documents";
+$lang['en']['headings']['review_sub_heading'] = "You should review and grade other students documents. The more the better.";
 
 /*** NAVIGATION ***/
 $lang['en']['navigation']['upload'] = "Upload your document";
@@ -31,6 +33,35 @@ $lang['en']['review']['need_to_upload_first'] = "You need to upload a document b
 $lang['en']['review']['not_time_for_reviews'] = "You need to wait until the deadline for uploading documents has expired. The review phase starts:";
 $lang['en']['review']['no_available_review_document'] = "There is currently no available document to a review. You have to wait until more documents are submitted.";
 $lang['en']['review']['no_reviews_yet'] = "You have not yet recieved any reviews on your document. You need to wait until reviews on your document are submitted before you can give feedback on those.";
+
+
+$lang['en']['review']['clarity'] = "Clarity";
+$lang['en']['review']['completeness'] = "Completeness";
+$lang['en']['review']['content'] = "Content";
+$lang['en']['review']['show_review_form_heading'] = "List of documents to review";
+$lang['en']['review']['show_review_form_instructions'] = "You can do as many reviews as you like. Your reviews that get the highest feedback will determine your grade. Note that reviews that got feedback can no longer be changed.";
+$lang['en']['review']['review_document'] = "Document";
+$lang['en']['review']['state_has_feedback'] = "has received feedback";
+$lang['en']['review']['state_complete'] = "complete";
+$lang['en']['review']['state_not_complete'] = "not complete";
+$lang['en']['review']['start_first_review'] = "Start your first review";
+$lang['en']['review']['review_another'] = "Review another document";
+$lang['en']['review']['no_more_documents'] = "No more documents to review";
+$lang['en']['review']['complete_before_next'] = "Complete existing review to start a new review...";
+$lang['en']['review']['page_heading_1'] = "List of documents to review";
+$lang['en']['review']['document_to_review'] = "Document to review";
+$lang['en']['review']['your_saved_review'] = "Your saved review";
+$lang['en']['review']['on_document'] = "on document";
+$lang['en']['review']['cannot_change_feedbacked_review'] = "You cannot change a review that has got feedback";
+$lang['en']['review']['page_heading_2'] = "Your saved review";
+$lang['en']['review']['page_heading_3'] = "Review form";
+$lang['en']['review']['complete_the_review'] = "You need to complete all fields and give grades on all categories";
+$lang['en']['review']['input_save_review'] = "Save Review";
+$lang['en']['review']['page_heading_4'] = "Feedback on your review";
+$lang['en']['review']['your_review_from'] = "your review from author";
+$lang['en']['review'][''] = "";
+$lang['en']['review'][''] = "";
+
 
 /*** FEEDBACK ***/
 $lang['en']['feedback']['not_time_for_feedback'] = "This is not the time for giving feedback to reviews, first you must make reviews. The feedback phase starts:";
@@ -64,8 +95,6 @@ $lang['en']['grading']['review_table_reviewer_score'] = "Your reviewer score(not
 $lang['en']['upload']['upload_phase_done'] = "You cannot change the uploaded document at this point. The deadline for uploading documents has passed";
 $lang['en']['upload']['upload_empty'] = "EMPTY";
 $lang['en']['upload']['uploaded_document'] = "The uploaded document";
-$lang['en']['upload']['upload_pdf_not_supported'] = "This browser does not support PDFs. Please download the PDF to view it:";
-$lang['en']['upload']['upload_pdf_anchor_text'] = "Download PDF";
 $lang['en']['upload']['warning'] = "WARNING";
 $lang['en']['upload']['one_more_upload_allowed'] = "Since the time for uploading has ended, only a single upload will be allowed! Make sure you double check that you upload a correct file.";
 $lang['en']['upload']['upload_heading_instructions'] = "Upload instructions";
@@ -73,6 +102,11 @@ $lang['en']['upload']['upload_heading_form'] = "Upload form";
 $lang['en']['upload']['upload_deadline_instructions'] = "After the deadline only a one time upload can happen (no changes of uploaded file) and no garanties are made that you are going to get reviews. The uploaded file can be changed up until";
 $lang['en']['upload']['upload_form_instructions'] = "Select document to upload:";
 $lang['en']['upload']['upload_form_input'] = "Upload Document";
+
+
+/*** PDF EXTRA ***/
+$lang['en']['pdf']['pdf_not_supported'] = "This browser does not support PDFs. Please download the PDF to view it:";
+$lang['en']['pdf']['pdf_anchor_text'] = "Download PDF";
 
 
 /***********

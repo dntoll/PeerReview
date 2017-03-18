@@ -61,10 +61,12 @@ class ReviewView {
 	}
 
 	public function showReview(\model\TestPlanReview $ri) : string {
+		include("./language.php");
+
 		$ret = "<div class=''>";
-		$ret .= $this->clarityFactorView->getHTMLContent($ri->getClarity(), "Clarity");
-		$ret .= $this->completenessFactorView->getHTMLContent($ri->getCompleteness(), "Completeness");
-		$ret .= $this->contentFactorView->getHTMLContent($ri->getContent(), "Content");
+		$ret .= $this->clarityFactorView->getHTMLContent($ri->getClarity(), $lang[LANGUAGE]['review']['clarity']);
+		$ret .= $this->completenessFactorView->getHTMLContent($ri->getCompleteness(), $lang[LANGUAGE]['review']['completeness']);
+		$ret .= $this->contentFactorView->getHTMLContent($ri->getContent(), $lang[LANGUAGE]['review']['content']);
 		$ret .= "</div>";
 
 
@@ -72,18 +74,19 @@ class ReviewView {
 	}
 
 	public function showHeader(\view\LayoutView $lv) : \view\LayoutView{
-
-		$lv->setHeaderText("Review documents", "You should review and grade other students documents. The more the better.");
+		include("./language.php");
+		$lv->setHeaderText($lang[LANGUAGE]['headings']['review_top_heading'], $lang[LANGUAGE]['headings']['review_sub_heading']);
 		return $lv;
 	}
 
 	public function showReviewForm(\model\TestPlanReviewList $studentReviewItems, \model\UniqueID $user, int $index, \view\LayoutView $lv) : \view\LayoutView {
+		include("./language.php");
 		$ret ="<div class=\"spotlight\">
 		<div class=\"content\">
 			<header class=\"major\">
-			<h2>List of documents to review</h2>
+			<h2>".$lang[LANGUAGE]['review']['show_review_form_heading']."</h2>
 			</header>
-			<p>You can do as many reviews as you like. Your reviews that get the highest feedback will determine your grade. Note that reviews that got feedback can no longer be changed. </p>
+			<p>".$lang[LANGUAGE]['review']['show_review_form_instructions']."</p>
 
 		</div>
 
@@ -96,16 +99,16 @@ class ReviewView {
 
 		//ksort($studentReviewItems);
 		foreach($studentReviewItems as $key => $ri) {
-			$title = "Document # $key ";
+			$title = $lang[LANGUAGE]['review']['review_document']." # $key ";
 			if ($ri->isFinished()) {
 
 				if ($this->m->reviewHasFeedback($ri)) {
-					$title .= "(has received feedback)";
+					$title .= "(".$lang[LANGUAGE]['review']['state_has_feedback'].")";
 				} else {
-					$title .= "(complete)";
+					$title .= "(".$lang[LANGUAGE]['review']['state_complete'].")";
 				}
 			} else {
-				$title .= " (not complete!)";
+				$title .= "(".$lang[LANGUAGE]['review']['state_not_complete'].")";
 				$canOpenNew = false;
 			}
 
@@ -121,48 +124,47 @@ class ReviewView {
 		if ($canOpenNew) {
 			if ($this->m->getReviewableList($user)->count() > 0) {
 				if ($studentReviewItems->getCount() === 0) {
-					$ret .= "<li><a class='menuItem' href='?action=review&New'>Start your first review</a></li>";
+					$ret .= "<li><a class='menuItem' href='?action=review&New'>".$lang[LANGUAGE]['review']['start_first_review']."</a></li>";
 				} else {
-					$ret .= "<li><a class='menuItem' href='?action=review&New'>Review another document</a></li>";
+					$ret .= "<li><a class='menuItem' href='?action=review&New'>".$lang[LANGUAGE]['review']['review_another']."</a></li>";
 				}
 			} else {
-				$ret .= "<li>No more plans to review</li>";
+				$ret .= "<li>".$lang[LANGUAGE]['review']['no_more_documents']."</li>";
 			}
 		} else {
-			$ret .= "<li>Complete existing plans to start a new review...</li>";
+			$ret .= "<li>".$lang[LANGUAGE]['review']['complete_before_next']."</li>";
 		}
 		$ret .= "</ul></div>";
 
-		$lv->addSection("List of documents to review", $ret);
+		$lv->addSection($lang[LANGUAGE]['review']['page_heading_1'], $ret);
 
 
 		if ($studentReviewItems->_isset($index)) {
 				$ri = $studentReviewItems->get($index);
 
-				$lv->addSection("Document to review $index", $this->getTestPlanHTML($ri, $index));
+				$lv->addSection($lang[LANGUAGE]['review']['document_to_review']." $index", $this->getTestPlanHTML($ri, $index));
 
 				if ($this->m->reviewHasFeedback($ri)) { //We have past the time to submit
-					$ret = "<header class=\"major\"><h2>Your saved review</h2></header>";
-					$ret .= $this->showReview($ri, " on document # $index ");
-					$ret .= "<div class='Warning'>You cannot change a review that has got feedback</div>";
+					$ret = "<header class=\"major\"><h2>".$lang[LANGUAGE]['review']['your_saved_review']."</h2></header>";
+					$ret .= $this->showReview($ri, " ".$lang[LANGUAGE]['review']['on_document']." # $index ");
+					$ret .= "<div class='Warning'>".$lang[LANGUAGE]['review']['cannot_change_feedbacked_review']."</div>";
 
 
-					$lv->addSection("Your saved review", $ret);
+					$lv->addSection($lang[LANGUAGE]['review']['page_heading_2'], $ret);
 					$lv = $this->showFeedbackOnThisReview($ri, $user, $lv);
 				} else {
-					$ret = "<h2>Review form</h2>";
+					$ret = "<h2>".$lang[LANGUAGE]['review']['page_heading_3']."</h2>";
 					$ret .= $this->getReviewForm($ri, $user, $index);
-					$lv->addSection("Review form", $ret);
+					$lv->addSection($lang[LANGUAGE]['review']['page_heading_3'], $ret);
 				}
-
-
 		}
 		return $lv;
 	}
 
 	private function getTestPlanHTML(\model\TestPlanReview $ri, int $index) {
+		include("./language.php");
 
-		$ret = "<header class=\"major\"><h2>Document to review # $index</h2></header>";
+		$ret = "<header class=\"major\"><h2>".$lang[LANGUAGE]['review']['document_to_review']." # $index</h2></header>";
 		$tp = $ri->getTestPlan();
 
 		switch (REVIEW_SOURCE_TYPE) {
@@ -174,7 +176,7 @@ class ReviewView {
 			$pdf = $tp->getPdf();
 			$ret .=
 			"<object data='$pdf' type='application/pdf' width='100%' height='842px'>
-   		<p>This browser does not support PDFs. Please download the PDF to view it: <a href='$pdf'>Download PDF</a>.</p>
+   		<p>".$lang[LANGUAGE]['pdf']['pdf_not_supported']." <a href='$pdf'>".$lang[LANGUAGE]['pdf']['pdf_anchor_text']."</a>.</p>
 	 		</object>
 			";
         break;
@@ -185,10 +187,11 @@ class ReviewView {
 	}
 
 	private function getReviewForm(\model\TestPlanReview $ri, \model\UniqueID $user, int $index) {
-		$formContent = "<div class='ReviewForm'>
+		include("./language.php");
+	$formContent = "<div class='ReviewForm'>
 		";
 		if ($ri->isFinished() === false) {
-			$formContent .= "<div class='Warning'>You need to complete all fields and give grades on all categories</div>";
+			$formContent .= "<div class='Warning'>".$lang[LANGUAGE]['review']['complete_the_review']."</div>";
 		}
 		$formContent .= file_get_contents(COURSE_FILES . INFORMATION_TEXT . "/clarityDescription.inc");
 		$formContent .= $this->clarityFactorView->getFormContent($ri->getClarity(), "reviewform");
@@ -204,22 +207,23 @@ class ReviewView {
 
 				    $formContent
 				    </br>
-				    <input type='submit' value='Save Review' name='submit'><br/>
+				    <input type='submit' value='".$lang[LANGUAGE]['review']['input_save_review']."' name='submit'><br/>
 					</form>";
 		return $ret . "</div>";
 	}
 
 	private function showFeedbackOnThisReview(\model\TestPlanReview $ri, \model\UniqueID $reviewer, \view\LayoutView $lv) : \view\LayoutView {
-		$ret = "<header class=\"major\"><h2>Feedback on your review</h2></header>";
+		include("./language.php");
+		$ret = "<header class=\"major\"><h2>".$lang[LANGUAGE]['review']['page_heading_4']."</h2></header>";
 		$feedbacks = $this->m->getReviewFeedbackList($ri);
 
 		foreach ($feedbacks as $key => $f) {
 			$rfv = new ReviewFeedbackView($this->m, $reviewer);
 
-			$ret .= $rfv->getFeedbackHTML($f, "your review from author # $key");
+			$ret .= $rfv->getFeedbackHTML($f, $lang[LANGUAGE]['review']['your_review_from']." # $key");
 
 		}
-		$lv->addSection("Feedback on your review", $ret);
+		$lv->addSection($lang[LANGUAGE]['review']['page_heading_4'], $ret);
 
 		return $lv;
 
