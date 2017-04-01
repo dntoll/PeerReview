@@ -11,6 +11,7 @@ class ReviewFactorView {
 	public function __construct(string $postIndex, array $reviewFactorGradeTitles) {
 		$this->postIndex = $postIndex;
 		$this->gv = new \view\GradingView($this->postIndex . "_grading");
+		$this->language = \Language::getLang();
 
 
 		$this->reviewFactorGradeTitles = $reviewFactorGradeTitles;
@@ -38,7 +39,7 @@ class ReviewFactorView {
 	}
 
 	public function getHTMLContent(\model\ReviewFactor $feedback, string $title) {
-		include("./language.php");
+
 		//$Parsedown = new \Parsedown();
 
 		//$parsed = $Parsedown->text($feedback->getText());
@@ -51,7 +52,7 @@ class ReviewFactorView {
 
 		$gv = new \view\GradingView("");
 		$ret = "<div class='Review'>";
-		$ret .= "<h3>".$lang[LANGUAGE]['review']['comment_on']." $title</h3>";
+		$ret .= "<h3>".$this->language['review']['comment_on']." $title</h3>";
 		$ret .= "<div class='ReviewText'>$parsed</div>";
 		$ret .= "<h3>Grade</h3>";
 		$ret .= "<div>" . $gv->getGradeHTML($feedback->getGrading(), $this->reviewFactorGradeTitles) . "</div>";

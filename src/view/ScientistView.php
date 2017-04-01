@@ -9,5 +9,7 @@ class ScientistView {
 
 	public function __construct(\model\StudentModel $m, \Settings $s) {
 		$this->m = $m;
+		$this->language = \Language::getLang();
+
 	}
 }

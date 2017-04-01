@@ -12,10 +12,11 @@ class Grading {
 
 
 	public function __construct(int $value = -1) {
-		include("./language.php");
+
+		$this->language = \Language::getLang();
 		$this->value = $value;
 		if ($this->value < -1 || $this->value > 4)
-			throw new \Exception($lang[LANGUAGE]['exceptions']['not_valid_grading']);
+			throw new \Exception($this->language['exceptions']['not_valid_grading']);
 	}
 
 	public function isFinished() : bool {

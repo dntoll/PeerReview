@@ -32,6 +32,7 @@ class StudentModel {
 		$this->reviewFeedbackDAL = new ReviewFeedbackDAL($settings);
 		$this->studentDAL = new StudentDAL($settings);
 		$this->settings = $settings;
+		$this->language = \Language::getLang();
 	}
 
 	public function hasPreviouslyUploadedTestPlan(UniqueID $student) : bool {
@@ -162,7 +163,7 @@ class StudentModel {
 	}
 
 	public function getReviewIndex(Uniqueid $teacher, TestPlan $tp) {
-		include("./language.php");
+
 
 		$allTeacherReviews = $this->getReviewed($teacher);
 
@@ -172,7 +173,7 @@ class StudentModel {
 			}
 		}
 
-		throw new \Exception($lang[LANGUAGE]['exceptions']['user_has_not_reviewed']);
+		throw new \Exception($this->language['exceptions']['user_has_not_reviewed']);
 	}
 
 	/**

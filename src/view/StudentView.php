@@ -16,6 +16,8 @@ class StudentView {
 
 	public function __construct(\Settings $s) {
 		$this->settings = $s;
+		$this->language = \Language::getLang();
+
 	}
 
 
@@ -54,58 +56,58 @@ class StudentView {
 
 
 	public function showNothingToReviewNotice(\view\LayoutView $lv) : \view\LayoutView {
-		include("./language.php");
-		$lv->addInformation($lang[LANGUAGE]['review']['nothing_to_review']);
+
+		$lv->addInformation($this->language['review']['nothing_to_review']);
 		return $lv;
 	}
 
 	public function getWrongUserIDNote(\view\LayoutView $lv) : \view\LayoutView  {
-		include("./language.php");
 
-		$lv->setHeaderText($lang[LANGUAGE]['session']['no_user_found'], $lang[LANGUAGE]['session']['error']);
 
-		$lv->addWarning($lang[LANGUAGE]['session']['no_active_session_info']);
+		$lv->setHeaderText($this->language['session']['no_user_found'], $this->language['session']['error']);
+
+		$lv->addWarning($this->language['session']['no_active_session_info']);
 		return $lv;
 	}
 
 	public function showStudentNeedsToUploadFirst(\view\LayoutView $lv) : \view\LayoutView  {
-		include("./language.php");
-		$lv->addWarning($lang[LANGUAGE]['review']['need_to_upload_first']);
+
+		$lv->addWarning($this->language['review']['need_to_upload_first']);
 		return $lv;
 	}
 
 	public function showNotTimeForReviews(\view\LayoutView $lv) : \view\LayoutView {
-		include("./language.php");
+
 		$deadlineTimeString = $this->settings->getDeadlineTimeString();
 
-		$lv->addWarning($lang[LANGUAGE]['review']['not_time_for_reviews']." ".$deadlineTimeString);
+		$lv->addWarning($this->language['review']['not_time_for_reviews']." ".$deadlineTimeString);
 		return $lv;
 	}
 
 	public function notTimeToGiveFeedbackNotice(\view\LayoutView $lv) : \view\LayoutView {
-		include("./language.php");
+
 		$deadlineTimeString = $this->settings->getFeedbackDeadlineTimeString();
 
 
-		$lv->addWarning($lang[LANGUAGE]['feedback']['not_time_for_feedback']." ".$deadlineTimeString);
+		$lv->addWarning($this->language['feedback']['not_time_for_feedback']." ".$deadlineTimeString);
 		return $lv;
 	}
 
 	public function showNoAvailableTestPlans(\view\LayoutView $lv) : \view\LayoutView {
-		include("./language.php");
-		$lv->addInformation($lang[LANGUAGE]['review']['nothing_to_review']);
+
+		$lv->addInformation($this->language['review']['nothing_to_review']);
 		return $lv;
 	}
 
 	public function showStudentShouldDoFeedbackNow(\view\LayoutView $lv) : \view\LayoutView {
-		include("./language.php");
-		$lv->addInformation($lang[LANGUAGE]['feedback']['should_do_feedback_now']);
+
+		$lv->addInformation($this->language['feedback']['should_do_feedback_now']);
 		return $lv;
 	}
 
 	public function noReviewsRecievedYetNotice(\view\LayoutView $lv) : \view\LayoutView {
-		include("./language.php");
-		$lv->addInformation($lang[LANGUAGE]['review']['no_reviews_yet']);
+
+		$lv->addInformation($this->language['review']['no_reviews_yet']);
 		return $lv;
 	}
 
@@ -129,28 +131,28 @@ class StudentView {
 	}
 
 	public function showMenu(\model\UniqueID $student, string $submenu, bool $isTeacher) : string {
-		include("./language.php");
+
 
 		$uid = $student->getName();
 		$ret = "<div id=\"nav\"><ul>";
 		$ret .=  "<li>
 
-					<a class='menuItem' href='?".self::NavigationAction."=upload'>".$lang[LANGUAGE]['navigation']['upload']."</a>
+					<a class='menuItem' href='?".self::NavigationAction."=upload'>".$this->language['navigation']['upload']."</a>
 				</li>
 				<li>
 
-					<a class='menuItem' href='?".self::NavigationAction."=review'>".$lang[LANGUAGE]['navigation']['review']."</a>
+					<a class='menuItem' href='?".self::NavigationAction."=review'>".$this->language['navigation']['review']."</a>
 				</li>
 				<li>
 
-					<a class='menuItem' href='?".self::NavigationAction."=feedback'>".$lang[LANGUAGE]['navigation']['feedback']."</a>
+					<a class='menuItem' href='?".self::NavigationAction."=feedback'>".$this->language['navigation']['feedback']."</a>
 				</li>
 				<li>
-					<a class='menuItem' href='?".self::NavigationAction."=score'>".$lang[LANGUAGE]['navigation']['score']."</a>
+					<a class='menuItem' href='?".self::NavigationAction."=score'>".$this->language['navigation']['score']."</a>
 				</li> ";
 
 		if ($isTeacher) {
-			$ret .=  "<li><a class='menuItem' href='?teacher&".self::NavigationAction."=plan'>".$lang[LANGUAGE]['navigation']['teacher']."</a></li> ";
+			$ret .=  "<li><a class='menuItem' href='?teacher&".self::NavigationAction."=plan'>".$this->language['navigation']['teacher']."</a></li> ";
 
 		}
 		$ret .= "</ul>$submenu</div>";

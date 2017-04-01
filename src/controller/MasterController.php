@@ -8,8 +8,8 @@ require_once("src/controller/TeacherController.php");
 require_once("src/view/TeacherView.php");
 require_once("src/view/LayoutView.php");
 require_once("src/model/AFGrader.php");
-//require("externals/ParseDown.php");
 require_once 'externals/php-markdown-lib/Michelf/MarkdownExtra.inc.php';
+require_once "lang/".LANGUAGE.".php";
 
 class MasterController {
 
@@ -37,7 +37,7 @@ class MasterController {
       $lv->setMenu($sv->showMenu($user, $lv->getSubMenu(), $s->isTeacher($user)));
     } catch (\view\NoUIDException $e) {
       $lv= $sv->getWrongUserIDNote($lv);
-    } 
+    }
     return $lv->getHTMLBody();
   }
 }

@@ -13,6 +13,7 @@ class TeacherView {
 		$this->uv = new UploadView($s);
 		$this->settings = $s;
 		$this->rv = new ReviewView($this->m);
+		$this->language = \Language::getLang();
 
 
 		$gradeTitles = require(COURSE_FILES . INFORMATION_TEXT . "/reviewGrades.inc");

@@ -19,10 +19,11 @@ class UploadController {
 		$this->m = $m;
 		$this->settings = $s;
 		$this->uv = $uv;
+		$this->language = \Language::getLang();
 	}
 
 	public function doControl(\model\UniqueID $uid, \view\LayoutView $lv) : \view\LayoutView{
-		include("./language.php");
+
 
 		try {
 
@@ -30,7 +31,7 @@ class UploadController {
 
 				if ($this->uv->studentTriesToUpload()) {
 					$this->m->doSaveTestPlan($this->uv->getUploadedFile(), $uid);
-					$lv->addInformation($lang[LANGUAGE]['document']['saved_file']);
+					$lv->addInformation($this->language['document']['saved_file']);
 				}
 			}
 

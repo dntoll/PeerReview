@@ -6,8 +6,8 @@ class StudentDAL {
 	private $settings;
 
 	public function __construct(\Settings $settings) {
-
 		$this->settings = $settings;
+		$this->language = \Language::getLang();
 	}
 
 	private function getFolder() {
@@ -50,10 +50,10 @@ class StudentDAL {
 	}
 
 	private function getTestPlanMD5(UniqueID $student) : string {
-		include("./language.php");
+
 
 		if ($this->hasPreviouslyUploadedTestPlan($student) == FALSE && $this->settings->isTeacher($student) == false) {
-			throw new \Exception($lang[LANGUAGE]['exceptions']['should_never_get_here']);
+			throw new \Exception($this->language['exceptions']['should_never_get_here']);
 		}
 
 		return file_get_contents($this->getFolder() .  DIRECTORY_SEPARATOR . $student->getName());
